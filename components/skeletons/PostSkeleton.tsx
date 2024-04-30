@@ -8,8 +8,9 @@ const PostSkeleton = ({count = 1}:{count ?: number}) => {
         <div key={index} className={`w-full bg-light dark:bg-d_semiDark rounded-none ss:rounded-xl ss:shadow px-2 ss:px-4 py-[14px] overflow-hidden `}>
             <div className="flex items-center gap-2">
                 < Skeleton circle width={44} className='bg-semiLight dark:bg-d_netral aspect-square' />
-                <div className="w-1/3 sm:w-[20%] flex flex-col text-dark gap-[2px]">
-                    < Skeleton count={2} className='bg-semiLight dark:bg-d_netral' />
+                <div className="w-1/3 sm:w-[25%] flex flex-col text-dark gap-[2px]">
+                    <Skeleton className='bg-semiLight dark:bg-d_netral' />
+                    <Skeleton className='!w-1/2 bg-semiLight dark:bg-d_netral' />
                 </div>
             </div>
 

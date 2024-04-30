@@ -4,6 +4,7 @@ import "./globals.css";
 import AuthProvider from "@/components/providers/AuthProvider";
 import DarkModeProvider from "@/components/providers/DarkModeProvider";
 import 'react-loading-skeleton/dist/skeleton.css'
+import ProgressbarProvider from "@/components/providers/ProgressbarProvider";
 
 const roboto = Roboto({ 
   weight: ['400', '500', '700'],
@@ -31,12 +32,13 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <body className={open_s.className}>
-        <DarkModeProvider>
-          <AuthProvider>
-            {children}
-          </AuthProvider>
-        </DarkModeProvider>
-
+        <ProgressbarProvider>
+          <DarkModeProvider>
+            <AuthProvider>
+              {children}
+            </AuthProvider>
+          </DarkModeProvider>
+        </ProgressbarProvider>
       </body>
     </html>
   );
