@@ -28,7 +28,7 @@ const ProfileDropdown = ({className} : {className ?: string}) => {
 
       <Dropdown.Content className="right-0 w-64 text-dark dark:text-d_light">
         <div className="bg-light dark:bg-d_semiDark flex flex-col shadow rounded-lg py-2 px-3">
-          <Link href={`/${username}`} className="flex items-center gap-3 py-2 px-1 hover:bg-light dark:hover:bg-d_netral rounded-xl">
+          <Link href={`/${user.username}`} className="flex items-center gap-3 py-2 px-1 hover:bg-light dark:hover:bg-d_netral rounded-xl">
             <RoundedImage
             src={user.profile_picture}
             className="w-9"

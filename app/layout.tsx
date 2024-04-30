@@ -1,11 +1,22 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Roboto, Lato, Open_Sans } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/components/providers/AuthProvider";
+import DarkModeProvider from "@/components/providers/DarkModeProvider";
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const roboto = Roboto({ 
   weight: ['400', '500', '700'],
-  subsets: ['latin'] })
+  subsets: ['latin'] 
+})
+const open_s = Open_Sans({ 
+  weight: ['400', '500', '700'],
+  subsets: ['latin'] 
+})
+const lato = Lato({
+  weight: ['400', '700'],
+  subsets: ['latin'] 
+  })
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,11 +29,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={roboto.className}>
-        <AuthProvider>
-          {children}
-        </AuthProvider>
+    <html suppressHydrationWarning lang="en">
+      <body className={open_s.className}>
+        <DarkModeProvider>
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+        </DarkModeProvider>
+
       </body>
     </html>
   );

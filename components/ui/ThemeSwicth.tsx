@@ -16,6 +16,7 @@ const ThemeSwitch = ({children,className}:{children :React.ReactNode,className?:
   }
   const buttonClick = (e:React.MouseEvent) => {
     e.stopPropagation()
+    console.log("change")
     theme == "dark"? setTheme('light'): setTheme("dark")
   }
   return (

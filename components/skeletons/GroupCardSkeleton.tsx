@@ -5,13 +5,13 @@ const GroupCardSkeleton = ({count=1}:{count ?: number}) => {
     <SkeletonTheme enableAnimation={false}>
     {
     Array(count).fill(0).map((_,index) => (
-      <div key={index} className='flex flex-col rounded-xl gap-2 pb-[6px]'>
-          <div className="aspect-video rounded-t-xl overflow-hidden relative">
-              < Skeleton className='bg-semiLight dark:bg-d_netral absolute inset-0' />
+      <div key={index} className='flex flex-col gap-2 pb-[6px]'>
+          <div className="aspect-video rounded-xl overflow-hidden relative">
+              <Skeleton className='bg-semiLight dark:bg-d_netral absolute inset-0 aspect-video' />
           </div>
           <div className='w-full flex flex-col'>
-            < Skeleton className='bg-semiLight dark:bg-d_netral w-full' />
-            < Skeleton className='bg-semiLight dark:bg-d_netral w-1/3' />
+            <Skeleton className='bg-semiLight dark:bg-d_netral !w-[85%]' />
+            <Skeleton className='bg-semiLight dark:bg-d_netral !w-[30%]' />
           </div>
       </div>
     ))

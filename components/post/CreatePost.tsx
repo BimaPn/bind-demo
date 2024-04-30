@@ -3,7 +3,7 @@ import { useAuth } from "../providers/AuthProvider"
 import RoundedImage from "../ui/RoundedImage"
 import FormCreatePost from "./FormCreatePost"
 
-const CreatePost = async () => {
+const CreatePost = () => {
   const { user } = useAuth()
   return (
     <section className="bg-light dark:bg-d_semiDark rounded-lg sm:shadow">    
@@ -13,7 +13,7 @@ const CreatePost = async () => {
             alt="profile picture"
             className='!w-12' />
             <div className='w-full flex flex-col'>
-                < FormCreatePost />
+                <FormCreatePost />
             </div>
         </div>
     </section>

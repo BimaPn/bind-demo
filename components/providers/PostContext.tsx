@@ -7,6 +7,7 @@ export const postContext = createContext<PostsContextProps | null>(null)
 
 const PostContext = ({children}:{children : React.ReactNode}) => {
     const [posts,setPosts] = useState<PostProps []>([])
+
     const addPost = (post:PostProps) => {
         setPosts((prevPosts) => {
           return [post,...prevPosts]

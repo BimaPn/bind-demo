@@ -1,4 +1,4 @@
-import Skeleton,{SkeletonTheme} from 'react-loading-skeleton'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 
 const PostSkeleton = ({count = 1}:{count ?: number}) => {
   return (
