@@ -1,17 +1,15 @@
 "use client"
-
 import { HiOutlineDotsHorizontal } from "react-icons/hi"
-import NotificationIcon from "../icons/NotificationIcon"
-import Dropdown, { dropDownContext } from "./Dropdown"
-import RoundedImage from "./RoundedImage"
-import { useNotification } from "../providers/NotificationProvider"
 import { useContext, useEffect } from "react"
 import { DropdownProps } from "@/types/types.dropdown"
 import ApiClient from "@/app/api/axios/ApiClient"
 import { formatDate } from "@/helpers/time"
+import Dropdown from "./ui/Dropdown"
+import NotificationIcon from "./icons/NotificationIcon"
+import RoundedImage from "./ui/RoundedImage"
 
+const unreadCount = 2
 const NotificationDropdown = () => {
-  const { unreadCount } = useNotification()
   return (
     <>
       <Dropdown>
@@ -27,9 +25,7 @@ const NotificationDropdown = () => {
                   </div>
                 )}
                 <NotificationIcon active width={18} className='cursor-pointer'/>
-
               </div>
-
             </div>
         </Dropdown.Trigger>
         <Dropdown.Content className="!fixed md:!absolute right-3 md:right-0 !top-12 md:!top-10 w-[354px] aspect-[3/4.5]">
@@ -42,28 +38,14 @@ const NotificationDropdown = () => {
 }
 
 const Content = () => {
-  const { notifications, setNotifications } = useNotification()
-  useEffect(() => {
-    if(!notifications) {
-      ApiClient.get(`/api/notifications/get`)
-      .then((res) => {
-        console.log(res.data)
-        setNotifications(res.data.notifications)
-      })
-      .catch((err) => {
-        console.log(err.response.data)
-      })
-    }
-  },[])
-  return notifications && (
+  return (
     <div className="w-full h-full flex flex-col bg-white rounded-xl shadow py-2 pt-3">
       <div className="mb-1 px-4">
         <span className="text-lg font-semibold">Notification</span>
       </div>
       <div className="flex flex-col gap-1 grow overflow-auto px-4">
-        {notifications.map((notif, index) => (
-          <NotificationItem key={index} notification={notif} />
-        ))}
+
+
       </div>
     </div>  
   )

@@ -9,7 +9,7 @@ import ThemeSwitch from "./ui/ThemeSwicth"
 import { authUser } from "@/constants/user"
 import { useAuth } from "./providers/AuthProvider"
 
-const ProfileDropdown = ({name,username,profile_picture,className} : {name:string,username:string,profile_picture:string,className ?: string}) => {
+const ProfileDropdown = ({className} : {className ?: string}) => {
   const { user } = useAuth()
   return  (
     <Dropdown>

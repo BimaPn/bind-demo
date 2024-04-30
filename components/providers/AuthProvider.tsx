@@ -19,4 +19,4 @@ export const useAuth = () => {
   return useContext(authContext) as AuthContext 
 }
 
-export default authContext
+export default AuthProvider 

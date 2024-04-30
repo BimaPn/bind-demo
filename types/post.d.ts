@@ -8,7 +8,6 @@ export type PostsContextProps = {
     updatePostLikes : (postId : string | number,isLiked : boolean) => void,
     updatePostSave : (postId : string | number,isSaved : boolean) => void
     setPostComments : (postId : string | number,comments : PostCommentProps[],commentTotal : number) => void,
-    addPostComment : (postId : string | number,commentId : string | number,comment : string) => void
 } 
 export type CreatePostFormProps = {
     caption ?: string,

@@ -1,8 +1,12 @@
+import { IoIosAddCircleOutline } from "react-icons/io"
 import ApplicationLogo from "./ApplicationLogo"
+import NotificationDropdown from "./NotificationDropdown"
 import ProfileDropdown from "./ProfileDropdown"
 import Search from "./Search"
+import { CgMenuRight } from "react-icons/cg"
+import CreatePostModal from "./post/CreatePostModal"
 
-const Navbar = () => {
+const Navbar = ({className}:{className?:string}) => {
   return (
     <nav className={`bg-light dark:bg-d_semiDark flexCenter fixed top-0 right-0 left-0 shadow z-[995] px-4 sm:px-5 ${className}`}>
         <div className='w-[1366px] grid grid-cols-2 md:grid-cols-[1fr_2.5fr_1fr] py-[6px]'>
@@ -21,16 +25,13 @@ const Navbar = () => {
                 </div>
                 <div className='hidden ss:block'>
                     <ProfileDropdown
-                    name={session?.user.name as string} 
-                    username={session?.user.username as string}
-                    profile_picture={session?.user.profile_picture as string} 
                     className='w-fit sm:w-44'
                     />
                 </div>
-                <CreatePostModal profilePicture={session?.user.profile_picture as string} className='block ss:hidden'>
+                <CreatePostModal className='block ss:hidden'>
                     <IoIosAddCircleOutline className='text-3xl text-dark dark:text-light' />
                 </CreatePostModal>
-                < CgMenuRight className='text-[26px] text-dark dark:text-light block ss:hidden' />
+                <CgMenuRight className='text-[26px] text-dark dark:text-light block ss:hidden' />
             </div>
         </div>
     </nav>

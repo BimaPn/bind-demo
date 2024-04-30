@@ -1,39 +1,8 @@
 "use client"
-import ApiClient from "@/app/api/axios/ApiClient"
-import EchoConfig from "@/app/api/pusher"
-import { useCallback, useEffect, useState } from "react"
-import { useChatCount } from "../providers/ChatCountProvider"
-import Echo from "laravel-echo"
 
-const ChatIcon = ({width=24,active = false,userId,className}:{width?:number,active?:boolean,userId: string,className?:string}) => {
-  const { chatCount, initialCount, modifyCount } = useChatCount()
-  
-  useEffect(() => {
-    ApiClient.get(`/api/messages/unread-count`)
-    .then((res) => {
-      initialCount(res.data.count)
-    })
-    .catch((err) => {
-      console.log(err.response.data)
-    })
+const chatCount = 2
 
-    let socket: Echo
-    const initial = async () => {
-      socket = await EchoConfig()
-      if(socket){
-        socket.private(`chat.${userId}`)
-        .listen('SendedMessage', (e:any) => {
-          if(!e.isPreviousUnreadExist) {
-            modifyCount(1)
-          }
-        })
-      }
-    }
-    initial()
-    return () => {
-      socket.disconnect()
-    }
-  },[])
+const ChatIcon = ({width=24,active = false,className}:{width?:number,active?:boolean,className?:string}) => {
   return (
     <div className="relative">
       <ChatSvg width={width} active={active} className={className} />
