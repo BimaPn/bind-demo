@@ -1,11 +1,14 @@
+"use client"
 import users from "@/constants/suggestionUsers"
 import { UserItemProps } from "@/types/types"
 import Link from "next/link"
 import { VscVerifiedFilled } from "react-icons/vsc"
 import RoundedImage from "./ui/RoundedImage"
 import FollowUserBtn from "./user/FollowUserBtn"
+import { useUsers } from "./providers/UsersProvider"
 
 const SuggestionUsers = () => {
+  const { users } = useUsers()
   return (
     <div className="bg-light dark:bg-d_semiDark text-dark dark:text-light rounded-xl sm:shadow px-4 py-4 !pt-2">
       <div className="flexBetween">
@@ -17,8 +20,10 @@ const SuggestionUsers = () => {
             key={user.name}
             name={user.name}
             username={user.username}
-            image={user.image}
-            verified={user.verified} />
+            image={user.profile_picture}
+            verified={user.isVerified}
+            isFollow={user.isFollow}
+            />
             ))}
         </ul>
         <Link 
@@ -31,7 +36,7 @@ const SuggestionUsers = () => {
   )
 }
 
-const UserItem = ({name,username,image,verified}:UserItemProps) => {
+const UserItem = ({name,username,image,verified, isFollow}:UserItemProps) => {
   return (
     <li className="flexBetween text-dark dark:text-light">
       <div className="flex items-center gap-2">
@@ -53,9 +58,10 @@ const UserItem = ({name,username,image,verified}:UserItemProps) => {
       </div>
 
       <FollowUserBtn
-      isFollow={false} 
-      usernameTarget="anjay"
-      className="!py-[6px] !px-4" />
+      isFollow={isFollow} 
+      username={username}
+      className="!py-[6px] !px-4"
+      />
     </li>
   )
 }

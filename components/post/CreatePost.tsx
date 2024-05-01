@@ -11,7 +11,7 @@ const CreatePost = () => {
             <RoundedImage
             src={user.profile_picture}
             alt="profile picture"
-            className='!w-12' />
+            className='!w-11' />
             <div className='w-full flex flex-col'>
                 <FormCreatePost />
             </div>

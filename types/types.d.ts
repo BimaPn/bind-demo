@@ -12,10 +12,11 @@ export type BoxSectionProps = {
 }
 
 export type UserItemProps = {
-    name : string,
-    username : string,
-    image : string,
+    name : string
+    username : string
+    image : string
     verified : boolean
+    isFollow: boolean
 }
 export type ModalBoxProps = {
     show : boolean,
