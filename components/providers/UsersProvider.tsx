@@ -7,6 +7,7 @@ type UsersContext = {
   users: UserProfileProps[]
   follow: (username:string) => void
   unfollow: (username:string) => void
+  findUser: (username:string) => UserProfileProps
 }
 const usersContext = createContext<UsersContext | null>(null)
 
@@ -35,8 +36,16 @@ const UsersProvider = ({children}:{children: React.ReactNode}) => {
     })
   }
 
+  const findUser = (username: string) => {
+    const user = users.find(user => user.username === username)
+    if(!user) {
+      throw Error("User not found.")
+    }
+    return user
+  }
+
   return (
-    <usersContext.Provider value={{ users, follow, unfollow }}>
+    <usersContext.Provider value={{ users, follow, unfollow, findUser }}>
     {children}
     </usersContext.Provider>
   )

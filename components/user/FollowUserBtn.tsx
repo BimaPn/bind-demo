@@ -24,8 +24,6 @@ const FollowUserBtn = (
       }else {
         follow(username)
       }
-      console.log("follow")
-
   }
   return (
     <button 
