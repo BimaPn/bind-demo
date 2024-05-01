@@ -17,7 +17,7 @@ export type UserProfileContextProps = {
     toggleIsFollow : () => void
 }
 
-type AuthContext {
+type AuthContext = {
     user: UserProfileProps,
     setUser : Dispatch<SetStateAction<UserProfileProps>>,
 }

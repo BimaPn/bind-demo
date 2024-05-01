@@ -5,13 +5,38 @@ import { createContext, useContext, useState } from "react"
 
 type UsersContext = {
   users: UserProfileProps[]
+  follow: (username:string) => void
+  unfollow: (username:string) => void
 }
 const usersContext = createContext<UsersContext | null>(null)
 
 const UsersProvider = ({children}:{children: React.ReactNode}) => {
   const [users, setUsers] = useState<UserProfileProps[]>(initialUsers)
+
+  const follow = (username: string) => {
+    setUsers((users) => {
+      return users.map((user) => {
+        if(user.username === username) {
+            user.isFollow = true 
+        }
+        return user
+      })
+    })
+  }
+
+  const unfollow = (username: string) => {
+    setUsers((users) => {
+      return users.map((user) => {
+        if(user.username === username) {
+            user.isFollow = false 
+        }
+        return user
+      })
+    })
+  }
+
   return (
-    <usersContext.Provider value={{ users }}>
+    <usersContext.Provider value={{ users, follow, unfollow }}>
     {children}
     </usersContext.Provider>
   )

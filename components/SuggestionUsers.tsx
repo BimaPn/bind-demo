@@ -40,13 +40,18 @@ const UserItem = ({name,username,image,verified, isFollow}:UserItemProps) => {
   return (
     <li className="flexBetween text-dark dark:text-light">
       <div className="flex items-center gap-2">
-        <RoundedImage
-        src={image}
-        alt="profile picture"
-        className="!w-10" />
+        <Link href={`/user/${username}`}>
+          <RoundedImage
+          src={image}
+          alt="profile picture"
+          className="!w-10"
+          />
+        </Link>
         <div className="flex flex-col">
           <div className="flex items-center gap-1">
-            <span className="truncate">{name}</span>
+            <Link href={`/user/${username}`} className="hover:underline">
+              <span className="truncate">{name}</span>
+            </Link>
             {verified && (
                < VscVerifiedFilled className='text-blue-500' />
             )}
@@ -56,7 +61,6 @@ const UserItem = ({name,username,image,verified, isFollow}:UserItemProps) => {
           </div>
         </div>
       </div>
-
       <FollowUserBtn
       isFollow={isFollow} 
       username={username}

@@ -9,7 +9,8 @@ import UsersProvider from "@/components/providers/UsersProvider";
 
 const open_s = Open_Sans({ 
   weight: ['400', '500', '700'],
-  subsets: ['latin'] 
+  subsets: ['latin'],
+  display:'swap'
 })
 
 
