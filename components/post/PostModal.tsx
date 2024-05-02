@@ -4,7 +4,7 @@ import Modal from '../ui/Modal'
 import Post from './Post'
 import PostCommentBar from './PostCommentBar'
 import CommentSkeleton from '../skeletons/CommentSkeleton'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { comments } from '@/constants/postComments'
 import PostComment from './PostComment'
 import { useComments } from '../providers/CommentsProvider'
@@ -13,13 +13,28 @@ const PostModal = ({post,show,onClose}:{post:PostProps,show : boolean,onClose : 
   const { findComments } = useComments()
   const [postComments, setPostComments] = useState<PostCommentProps[]>(findComments(post.id))
   const [loaded, setLoaded] = useState(false)
-  
+  const bodyElement = useRef<HTMLDivElement>(null) 
+
   useEffect(() => {
     const timerId = setTimeout(() => {
       setLoaded(true)
     },500)
     return () => clearTimeout(timerId)
   },[])
+
+  useEffect(() => {
+    scrollToBottom()
+  },[postComments])
+
+  const addComment = (comment: PostCommentProps) => {
+    setPostComments((prev) => [...prev, comment])
+  }
+
+  const scrollToBottom = () => {
+    if(bodyElement.current) {
+      bodyElement.current.scrollTop = bodyElement.current.scrollHeight
+    }
+  }
   return (
     <Modal 
     show={show}
@@ -27,7 +42,9 @@ const PostModal = ({post,show,onClose}:{post:PostProps,show : boolean,onClose : 
     onClose={onClose}
     className='!h-screen'
     >
-      <Modal.Body className='h-full'>
+      <Modal.Body
+      ref={bodyElement}
+      className='h-full'>
         <Post 
         id={post.id}
         caption={post.caption} 
@@ -52,7 +69,9 @@ const PostModal = ({post,show,onClose}:{post:PostProps,show : boolean,onClose : 
 
       </Modal.Body>
       <Modal.Footer>
-        <PostCommentBar postId={post.id as number | string} />
+        <PostCommentBar 
+        postId={post.id as number | string}
+        onFinished={addComment} />
       </Modal.Footer>
     </Modal>
   )

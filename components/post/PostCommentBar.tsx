@@ -5,23 +5,42 @@ import { IoSend } from "react-icons/io5"
 import { useContext, useState, useEffect } from "react"
 import { postContext } from "../providers/PostContext"
 import ApiClient from "@/app/api/axios/ApiClient"
-import { PostsContextProps } from "@/types/post"
+import { PostCommentProps, PostsContextProps } from "@/types/post"
+import { useComments } from "../providers/CommentsProvider"
+import { authUser } from "@/constants/user"
 
-const PostCommentBar = ({postId} : {postId : string | number}) => {
+const PostCommentBar = ({postId, onFinished} : {postId : string | number, onFinished: (comment: PostCommentProps) =>void}) => {
     const [comment,setComment] = useState<string>('')
     const [disabled,setDisabled] = useState<boolean>(false)
-
+    const { addComment } = useComments()
     useEffect(() => {
       comment.length == 0 ? setDisabled(true) : setDisabled(false)
     },[comment])
+
     const formSubmit = (e:React.FormEvent) => {
-        e.preventDefault()
+      e.preventDefault()
+      const newComment = {
+        id: `${Date.now()}_${Math.random()}`,
+        postId,
+        comment,
+        created_at: "Now",
+        isLiked: false,
+        user: {
+          name: authUser.name,
+          username: authUser.username,
+          profile_picture: authUser.profile_picture,
+          isVerified: false
+        }
+      }
+      addComment(newComment) 
+      onFinished(newComment)
+      setComment("")
     }
   return (
     <form onSubmit={formSubmit} className='h-fit flexBetween px-4 py-[6px] ss:py-[10px] gap-4'>
     <div className='w-full flex items-center gap-2'>
       <div className='w-11 aspect-square rounded-full overflow-hidden'>
-        <Image src={`/person.jpg`}
+        <Image src={authUser.profile_picture}
         width={300} height={300}
         className='w-full'
         alt='profile picture'/>

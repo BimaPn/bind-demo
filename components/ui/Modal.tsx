@@ -1,6 +1,6 @@
 'use client'
 import { ModalBoxProps } from "@/types/types";
-import { useEffect } from "react";
+import { Ref, forwardRef, ForwardRefRenderFunction, useEffect } from "react";
 import { PiArrowLeft } from "react-icons/pi"
 
 const Modal = ({show,title,children,onClose,className}:ModalBoxProps) => {
@@ -42,9 +42,14 @@ const Modal = ({show,title,children,onClose,className}:ModalBoxProps) => {
   )
 }
 
-const Body = ({children,className}:{children:React.ReactNode,className ?: string}) => {
+type BodyProps = {
+  children: React.ReactNode
+  className?: string
+}
+
+const Body: ForwardRefRenderFunction<HTMLDivElement, BodyProps> = ({children, className},ref) => {
     return (
-        <div className={`overflow-auto sm:max-h-full ${className}`}>
+        <div className={`overflow-auto sm:max-h-full ${className}`} ref={ref}>
             {children}
         </div>
     )
@@ -58,6 +63,6 @@ const Footer = ({children,className}:{children:React.ReactNode,className ?: stri
     )
 }
 
-Modal.Body = Body
+Modal.Body = forwardRef(Body) 
 Modal.Footer = Footer
 export default Modal

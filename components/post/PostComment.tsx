@@ -25,7 +25,6 @@ const PostComment = ({comment} : {comment: PostCommentProps}) => {
                     · <span className="text-sm">{comment.created_at}</span>
                     </span>
                 </div>
-                {/* comment */}
                 <p>
                     {comment.comment}
                 </p>
