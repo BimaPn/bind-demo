@@ -12,6 +12,7 @@ type PostContext = {
   saved: (postId: string|number) => void
   unsaved: (postId: string|number) => void
   savedPosts: () => PostProps[]
+  userPosts: (username: string, fullMedia?:boolean) => PostProps[]
 }
 const postContext = createContext<PostContext | null>(null)
 
@@ -23,6 +24,12 @@ const PostsProvider = ({children}:{children: React.ReactNode}) => {
   }
   const savedPosts = () => {
     return posts.filter((post) => post.isSaved)
+  }
+  const userPosts = (username: string, fullMedia=false) => {
+    if(fullMedia) {
+      return posts.filter((post) => (post.user.username === username) && post.media?.length! > 0)
+    }
+    return posts.filter((post) => post.user.username === username)
   }
   const like = (postId: string|number) => {
     setPosts((posts) => {
@@ -67,7 +74,7 @@ const PostsProvider = ({children}:{children: React.ReactNode}) => {
     })
   }
   return (
-    <postContext.Provider value={{ posts, like, unlike, saved, unsaved, addPost, savedPosts }}>
+    <postContext.Provider value={{ posts, like, unlike, saved, unsaved, addPost, savedPosts, userPosts }}>
     {children}
     </postContext.Provider>
   )

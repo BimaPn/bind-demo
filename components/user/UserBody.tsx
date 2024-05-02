@@ -22,10 +22,10 @@ const UserBody = ({username} : {username : string}) => {
     </div>
         {selectedSection == 'Posts' ? 
             (
-            < UserContent username={username} />
+            <UserContent username={username} />
             ) : 
             (
-            < UserMedia username={username} />
+            <UserMedia username={username} />
             )
         }
     </>

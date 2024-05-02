@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import UserHeader from "@/components/user/UserHeader";
 import PageHeader from '@/components/PageHeader';
 import { authUser, initialUsers } from '@/constants/user';
+import UserBody from '@/components/user/UserBody';
 
 type Props = {
   params: { username: string };
@@ -29,7 +30,8 @@ const User = async ({params}:Props) => {
     <div className="flex flex-col">
         <PageHeader title={params.username} showWideScreen={false} className="ss:hidden block" />
         <div>
-          <UserHeader user={findUser()}  />
+          <UserHeader user={findUser()} />
+          <UserBody username={params.username} />
         </div>
     </div>
   )
