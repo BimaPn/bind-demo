@@ -5,11 +5,16 @@ import { PiArrowLeft } from "react-icons/pi"
 
 const Modal = ({show,title,children,onClose,className}:ModalBoxProps) => {
     useEffect(() => {
-      document.body.style.overflow = "hidden"
-      return () => {
-      document.body.style.overflow = "auto"
+      if(show) {
+        document.body.style.overflow = "hidden"
+      }else {
+        document.body.style.overflow = "auto"
       }
-    },[])
+
+      return () => {
+        document.body.style.overflow = "auto"
+      }
+    },[show])
     const closeModal = () => {
         onClose()
     }

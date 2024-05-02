@@ -16,7 +16,7 @@ export const initialPosts: PostProps[] = [
       commentTotal : 0,
       created_at : "A day ago",
       isLiked : true,
-      isSaved : true,
+      isSaved : false,
     },
     {
       id : '3',
@@ -32,8 +32,8 @@ export const initialPosts: PostProps[] = [
       likedTotal : 443,
       commentTotal : 0,
       created_at : "A day ago",
-      isLiked : true,
-      isSaved : true,
+      isLiked : false,
+      isSaved : false,
     },
     {
       id : '4',
@@ -49,8 +49,8 @@ export const initialPosts: PostProps[] = [
       likedTotal : 443,
       commentTotal : 0,
       created_at : "A day ago",
-      isLiked : true,
-      isSaved : true,
+      isLiked : false,
+      isSaved : false,
     },
 ]
 

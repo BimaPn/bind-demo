@@ -1,10 +1,16 @@
 'use client'
 import { PiHeartFill } from 'react-icons/pi'
+import { usePosts } from '../providers/PostsProvider'
 
 const PostLike = ({postId,isLiked} : {postId : string | number,isLiked : boolean}) => {
+  const { like, unlike } = usePosts()
   const postLike = (e:React.MouseEvent) => {
     e.stopPropagation()
-    console.log("liked the post")
+    if(isLiked) {
+      unlike(postId)
+    }else {
+      like(postId)
+    }
   }
   return (
     <button onClick={postLike}>
