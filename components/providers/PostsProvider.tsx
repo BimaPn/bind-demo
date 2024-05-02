@@ -11,6 +11,7 @@ type PostContext = {
   unlike: (postId: string|number) => void
   saved: (postId: string|number) => void
   unsaved: (postId: string|number) => void
+  savedPosts: () => PostProps[]
 }
 const postContext = createContext<PostContext | null>(null)
 
@@ -19,6 +20,9 @@ const PostsProvider = ({children}:{children: React.ReactNode}) => {
   
   const addPost = (post: PostProps) => {
     setPosts((prev) => [post, ...prev])
+  }
+  const savedPosts = () => {
+    return posts.filter((post) => post.isSaved)
   }
   const like = (postId: string|number) => {
     setPosts((posts) => {
@@ -63,7 +67,7 @@ const PostsProvider = ({children}:{children: React.ReactNode}) => {
     })
   }
   return (
-    <postContext.Provider value={{ posts, like, unlike, saved, unsaved, addPost }}>
+    <postContext.Provider value={{ posts, like, unlike, saved, unsaved, addPost, savedPosts }}>
     {children}
     </postContext.Provider>
   )
