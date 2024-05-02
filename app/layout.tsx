@@ -7,6 +7,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import ProgressbarProvider from "@/components/providers/ProgressbarProvider";
 import UsersProvider from "@/components/providers/UsersProvider";
 import PostsProvider from "@/components/providers/PostsProvider";
+import CommentsProvider from "@/components/providers/CommentsProvider";
 
 const open_s = Open_Sans({ 
   weight: ['400', '500', '700'],
@@ -33,7 +34,9 @@ export default function RootLayout({
             <AuthProvider>
               <UsersProvider>
                 <PostsProvider>
-                  {children}
+                  <CommentsProvider>
+                    {children}
+                  </CommentsProvider>
                 </PostsProvider>
               </UsersProvider>
             </AuthProvider>

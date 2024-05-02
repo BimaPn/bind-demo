@@ -11,7 +11,7 @@ const MainContent = () => {
   useEffect(() => {
     const timerId = setTimeout(() => {
       setLoaded(true)
-    },500)
+    },200)
 
     return () => clearTimeout(timerId)
   },[])

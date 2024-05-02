@@ -54,12 +54,15 @@ export type PostEditProps = {
     media ?: PostMediaProps[]
 }
 export type PostCommentProps = {
-    id : string | number,
+    id: string
+    postId : string | number,
     user : {
         name : string,
+        username: string
         profile_picture : string,
         isVerified : boolean
     },
+    isLiked: boolean
     comment : string,
     created_at : string
 }

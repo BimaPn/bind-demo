@@ -1,11 +1,25 @@
 'use client'
-import { PostProps } from '@/types/post'
+import { PostCommentProps, PostProps } from '@/types/post'
 import Modal from '../ui/Modal'
 import Post from './Post'
 import PostCommentBar from './PostCommentBar'
 import CommentSkeleton from '../skeletons/CommentSkeleton'
+import { useEffect, useState } from 'react'
+import { comments } from '@/constants/postComments'
+import PostComment from './PostComment'
+import { useComments } from '../providers/CommentsProvider'
 
 const PostModal = ({post,show,onClose}:{post:PostProps,show : boolean,onClose : () => void}) => {
+  const { findComments } = useComments()
+  const [postComments, setPostComments] = useState<PostCommentProps[]>(findComments(post.id))
+  const [loaded, setLoaded] = useState(false)
+  
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setLoaded(true)
+    },500)
+    return () => clearTimeout(timerId)
+  },[])
   return (
     <Modal 
     show={show}
@@ -30,7 +44,10 @@ const PostModal = ({post,show,onClose}:{post:PostProps,show : boolean,onClose : 
       </div>
 
       <div className='min-h-[160px] flex flex-col gap-4 px-2 ss:px-4 pb-4 pt-2'>
-        <CommentSkeleton count={3} />
+        {!loaded && <CommentSkeleton count={3} />}
+        {loaded && postComments.map((comment, index) => (
+          <PostComment key={index} comment={comment} />
+        ))}
       </div>
 
       </Modal.Body>
