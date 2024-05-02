@@ -1,8 +1,7 @@
 type Message = {
-  id: string 
+  username: string
   message: string
   created_at: string
-  isCurrentAuth: boolean
 }
 
 type ChatItem = {
@@ -15,11 +14,12 @@ type UserChat = {
   name:string
   profile_picture: string
   username: string
+  isVerified: boolean
 }
 
 type ChatListProviderProps = {
-  users: ChatItem[] | null
-  setUsers: Dispatch<SetStateAction<ChatItem[] | null>>
+  users: ChatItem[]
+  setUsers: Dispatch<SetStateAction<ChatItem[]>>
   addToList: (chat: ChatItem) => void
   clearUnread: (username: string) => void
 }

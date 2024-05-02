@@ -1,14 +1,14 @@
 "use client"
+import { chatList } from "@/constants/messages"
 import { createContext, useCallback, useContext, useState } from "react"
 
 const chatListContext = createContext<ChatListProviderProps | null>(null)
 
 const ChatListProvider = ({children}:{children:React.ReactNode}) => {
-  const [users, setUsers] = useState<ChatItem[] | null>(null)
+  const [users, setUsers] = useState<ChatItem[]>(chatList)
 
   const addToList = useCallback((chat: ChatItem) => {
     setUsers((prev) => {
-      if(!prev) return null
       const filteredData = prev.filter((user) => user.user.username !== chat.user.username)
       return [chat, ...filteredData]
     })
@@ -16,7 +16,6 @@ const ChatListProvider = ({children}:{children:React.ReactNode}) => {
 
   const clearUnread = (username: string) => {
     setUsers((prev) => {
-      if(!prev) return null
       return prev.map((chat) => {
         if(chat.user.username === username) {
           chat.isRead = true

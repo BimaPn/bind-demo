@@ -9,7 +9,7 @@ import ChatListSkeleton from "../skeletons/ChatListSkeleton"
 
 const ChatMenu = () => {
   const path = usePathname()
-  const { users, setUsers, addToList} = useChatList()
+  const { users } = useChatList()
   return (
     <div className={`w-full md:w-[512px] flex flex-col bg-white dark:bg-d_semiDark rounded-xl sm:shadow ${path !== "/chat" && "hidden md:block"} py-4`}>
       <div className="mb-3 text-dark -mt-1 px-2">
