@@ -10,6 +10,7 @@ import PickEmoji from "../PickEmoji"
 import BackButton from "../BackButton"
 import MessageItem from "./MessageItem"
 import { useMessages } from "../providers/MessagesProvider"
+import { authUser } from "@/constants/user"
 
 const ChatSection = ({username, userTarget}:{username: string,userTarget: UserChat}) => {
   const { getUsersMessages } = useMessages()
@@ -35,7 +36,7 @@ const ChatSection = ({username, userTarget}:{username: string,userTarget: UserCh
     //   created_at:message.created_at,
     //   isRead: true
     // })
-    // setMessages((prev) => [...prev, message])
+    setMessages((prev) => [...prev, message])
   }
   return (
    <section className={`w-full flex flex-col bg-white dark:bg-d_semiDark rounded-xl sm:shadow
@@ -88,15 +89,23 @@ const Header = ({userTarget}:{userTarget: UserChat}) => {
 const Footer = ({onSendMessage,targetUsername}:{onSendMessage: (message: Message) => void, targetUsername:string}) => {
   const [message, setMessage] = useState<string>("")
   const [disabled, setDisabled] = useState<boolean>(false) 
+  const { addMessage } = useMessages()
 
   useEffect(() => {
   setDisabled(message.length <= 0)
   },[message])
   const onSend = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-      setMessage("")
-      setDisabled(false)
-      // onSendMessage(res.data.message)
+    console.log("haha")
+    const newMessage = {
+      message,
+      username: authUser.username,
+      created_at: "12.34 PM"
+    }
+    addMessage(newMessage)
+    onSendMessage(newMessage)
+    setMessage("")
+    setDisabled(false)
   }
   return (
     <form onSubmit={onSend} className="flexBetween gap-1 py-2 px-1 sm:px-3">
@@ -109,7 +118,9 @@ const Footer = ({onSendMessage,targetUsername}:{onSendMessage: (message: Message
         placeholder='Type something ...'
         />
         <div>
-        <PickEmoji onEmojiClick={(emoji) => setMessage(prev => prev + emoji)}>
+        <PickEmoji onEmojiClick={(emoji) => setMessage(prev => prev + emoji)}
+        emojiContainerClassName="bottom-8 -right-16 xs:right-0"
+        >
           <BsEmojiSmile className="text-[22px] text-blue-400 hover:text-blue-300 cursor-pointer" />
         </PickEmoji>
         </div>

@@ -20,7 +20,7 @@ const PickEmoji = ({
       <Dropdown.Trigger>
         {children}
       </Dropdown.Trigger>
-      <Dropdown.Content showFromBottom={false} className={`top-8 left-0 xs:right-0 ${emojiContainerClassName}`}>
+      <Dropdown.Content showFromBottom={false} className={`${emojiContainerClassName}`}>
         <EmojiPicker 
         onEmojiClick={(object) => onEmojiClick(object.emoji)} 
         theme={resolvedTheme as any}

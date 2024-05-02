@@ -73,7 +73,10 @@ const FormCreatePost = ({groupId = null,mobile = false,onClose}:{groupId ?: stri
                     </div>
                 </ImagesInput.Trigger>
 
-                <PickEmoji onEmojiClick={(emoji) => setFormData({...formData, caption: formData.caption + emoji})}>
+                <PickEmoji 
+                onEmojiClick={(emoji) => setFormData({...formData, caption: formData.caption + emoji})}
+                emojiContainerClassName="top-8 left-0"
+                >
                   <div className='flexCenter w-8 aspect-square rounded-full bg-semiLight dark:bg-d_netral'>
                       <EmojiIcon />
                   </div>
