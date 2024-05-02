@@ -9,9 +9,8 @@ export type PostsContextProps = {
     setPostComments : (postId : string | number,comments : PostCommentProps[],commentTotal : number) => void,
 } 
 export type CreatePostFormProps = {
-    caption ?: string,
-    group_id ?: string | number | null,
-    media ?: File[]
+    caption : string,
+    media ?: string[]
 }
 export type PostUpdateProps = {
     caption ?: string,

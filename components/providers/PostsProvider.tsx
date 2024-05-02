@@ -6,6 +6,7 @@ import { createContext, useContext, useState } from "react"
 
 type PostContext = {
   posts: PostProps[]
+  addPost: (post: PostProps) => void
   like: (postId: string|number) => void
   unlike: (postId: string|number) => void
   saved: (postId: string|number) => void
@@ -15,7 +16,10 @@ const postContext = createContext<PostContext | null>(null)
 
 const PostsProvider = ({children}:{children: React.ReactNode}) => {
   const [posts, setPosts] = useState<PostProps[]>(initialPosts)
-
+  
+  const addPost = (post: PostProps) => {
+    setPosts((prev) => [post, ...prev])
+  }
   const like = (postId: string|number) => {
     setPosts((posts) => {
       return posts.map((post) => {
@@ -59,7 +63,7 @@ const PostsProvider = ({children}:{children: React.ReactNode}) => {
     })
   }
   return (
-    <postContext.Provider value={{ posts, like, unlike, saved, unsaved }}>
+    <postContext.Provider value={{ posts, like, unlike, saved, unsaved, addPost }}>
     {children}
     </postContext.Provider>
   )
