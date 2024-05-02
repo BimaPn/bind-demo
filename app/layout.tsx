@@ -6,6 +6,7 @@ import DarkModeProvider from "@/components/providers/DarkModeProvider";
 import 'react-loading-skeleton/dist/skeleton.css'
 import ProgressbarProvider from "@/components/providers/ProgressbarProvider";
 import UsersProvider from "@/components/providers/UsersProvider";
+import PostsProvider from "@/components/providers/PostsProvider";
 
 const open_s = Open_Sans({ 
   weight: ['400', '500', '700'],
@@ -31,7 +32,9 @@ export default function RootLayout({
           <DarkModeProvider>
             <AuthProvider>
               <UsersProvider>
-                {children}
+                <PostsProvider>
+                  {children}
+                </PostsProvider>
               </UsersProvider>
             </AuthProvider>
           </DarkModeProvider>

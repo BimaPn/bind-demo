@@ -1,4 +1,3 @@
-
 export type PostsContextProps = {
     posts : PostProps[],
     setPosts: Dispatch<SetStateAction<PostProps[]>>
@@ -31,8 +30,7 @@ export type NewPostProps = {
     created_at : string
 }
 export type PostMediaProps = {
-    id : string | number,
-    file_path : string,
+    path : string,
 }
 export type PostProps = {
     id : string | number,
@@ -43,13 +41,11 @@ export type PostProps = {
         isVerified : boolean
     },
     caption : string,
-    media ?: PostMediaProps[],
+    media ?: string[],
     likedTotal : number,
     commentTotal : number,
     isLiked : boolean,
     isSaved : boolean,
-    isAuthor : boolean,
-    comments ?: PostCommentProps[],
     created_at : string
 }
 export type PostEditProps = {
