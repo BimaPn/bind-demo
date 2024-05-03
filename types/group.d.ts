@@ -6,16 +6,15 @@ export type GroupContextProps = {
     isJoin : () => boolean
 }
 export type GroupProps = {
-    id : string | number,
+    id : string,
     name : string,
     group_picture : string,
     description : string,
     memberTotal : number,
     isJoin : boolean,
-    isAdmin ?: boolean
 }
 export type GroupCardProps = {
-    id : string | number,
+    id : string,
     name : string,
     group_picture : string,
     memberTotal : number,

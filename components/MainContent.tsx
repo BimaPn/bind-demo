@@ -9,11 +9,7 @@ const MainContent = () => {
   const [loaded, setLoaded] = useState<boolean>(false)
 
   useEffect(() => {
-    const timerId = setTimeout(() => {
-      setLoaded(true)
-    },200)
-
-    return () => clearTimeout(timerId)
+    setLoaded(true)
   },[])
   return (
     <>

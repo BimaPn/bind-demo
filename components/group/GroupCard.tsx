@@ -31,7 +31,12 @@ const GroupCard = ({id,group_picture,name,memberTotal,isJoin,className}:GroupCar
                 </div>
         </div>
         <div className="px-2 mt-2 mb-[2px]">
-          <button className="w-full dark:bg-d_netral bg-semiLight font-medium text-sm rounded-full py-[6px]">Join</button>
+          <button 
+          className={`w-full font-medium text-sm rounded-full py-[6px] 
+          ${!isJoin ? "dark:bg-d_netral bg-semiLight " : "border border-gray-300"}`}
+          >
+          {isJoin ? "Leave" : "Join"}
+          </button>
         </div>
     </div>
   )

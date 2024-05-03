@@ -9,6 +9,7 @@ import UsersProvider from "@/components/providers/UsersProvider";
 import PostsProvider from "@/components/providers/PostsProvider";
 import CommentsProvider from "@/components/providers/CommentsProvider";
 import ChatCountProvider from "@/components/providers/ChatCountProvider";
+import GroupsProvider from "@/components/providers/GroupsProvider";
 
 const open_s = Open_Sans({ 
   weight: ['400', '500', '700'],
@@ -36,9 +37,11 @@ export default function RootLayout({
               <UsersProvider>
                 <PostsProvider>
                   <CommentsProvider>
-                    <ChatCountProvider>
-                      {children}
-                    </ChatCountProvider>
+                    <GroupsProvider>
+                      <ChatCountProvider>
+                        {children}
+                      </ChatCountProvider>
+                    </GroupsProvider>
                   </CommentsProvider>
                 </PostsProvider>
               </UsersProvider>
