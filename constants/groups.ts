@@ -5,7 +5,8 @@ export const groups = [
     group_picture: "/groups/gta.jpg",
     description: "We talk about the best game series in history.",
     memberTotal: 35000,
-    isJoin: true
+    isJoin: true,
+    isAdmin: true
   },
   {
     id: "the-future-of-technology",

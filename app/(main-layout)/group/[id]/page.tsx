@@ -19,9 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const page = async ({params}:Props) => {
   return (
     <>    
-      <div className='mt-[55px] ss:m-0'>
-        <GroupHeader />
-      </div>
+      <GroupHeader groupId={params.id as string} />
     </>
   )
 }

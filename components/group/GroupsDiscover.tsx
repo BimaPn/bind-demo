@@ -20,7 +20,7 @@ const GroupsDiscover = ({className}:{className ?: string}) => {
         <div className="grid grid-cols-1 ss:grid-cols-2 gap-3">
           {!loaded && <GroupCardSkeleton count={4} />}
           {loaded && groupsDiscover().map((group) => (
-            <Link href={`/groups/${group.id}`} key={group.id}>              
+            <Link href={`/group/${group.id}`} key={group.id}>              
               <GroupCard
               id={group.id}
               name={group.name}

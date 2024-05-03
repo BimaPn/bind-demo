@@ -36,7 +36,7 @@ const GroupJoined = () => {
       <div className="grid grid-cols-1 ss:grid-cols-2 gap-3">
         {!loaded && <GroupCardSkeleton count={2} />}
         {loaded && groupsJoined().map((group) => (
-          <Link href={`/groups/${group.id}`} key={group.id}>              
+          <Link href={`/group/${group.id}`} key={group.id}>              
             <GroupCard
             id={group.id}
             name={group.name}

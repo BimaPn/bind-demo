@@ -11,6 +11,7 @@ export type GroupProps = {
     group_picture : string,
     description : string,
     memberTotal : number,
+    isAdmin?: boolean
     isJoin : boolean,
 }
 export type GroupCardProps = {
