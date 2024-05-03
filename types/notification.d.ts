@@ -10,10 +10,14 @@ type NotificationEntity = {
 }
 
 type NotificationItem = {
-  id: string
-  sender: NotificationSender
+  notifier: {
+    name: string
+    username: string
+    profile_picture: string
+  } 
   message: string
-  entity: NotificationEntity
+  isRead: boolean
+  link: string
   created_at: string
 }
 

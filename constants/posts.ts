@@ -1,4 +1,5 @@
 import { PostProps } from "@/types/post"
+import { authUser } from "./user"
 
 export const initialPosts: PostProps[] = [
     {
@@ -21,13 +22,12 @@ export const initialPosts: PostProps[] = [
     {
       id : '3',
       user : {
-          name : "Cristiano Ronaldo",
-          username : 'cristiano',
-          profile_picture  : "/people/cristiano_ronaldo.jpg",
+          name : "Richard Dawkins",
+          username : 'richard_dawkins',
+          profile_picture : '/people/dawkins.jpg',
           isVerified : true
       },
-      caption : `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                 Rerum error ullam vero, deserunt in cumque.`,
+      caption : `A Practical Demonstration of the time scale of life itself compared to the time scale of recorded history.`,
       media : ["/cristiano_post.jpg"],
       likedTotal : 443,
       commentTotal : 0,
@@ -38,13 +38,12 @@ export const initialPosts: PostProps[] = [
     {
       id : '4',
       user : {
-          name : "Cristiano Ronaldo",
-          username : 'cristiano',
-          profile_picture  : "/people/cristiano_ronaldo.jpg",
+          name : 'Mike Tyson',
+          username : 'mike_tyson',
+          profile_picture : '/people/tyson.jpg',
           isVerified : true
       },
-      caption : `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                 Rerum error ullam vero, deserunt in cumque.`,
+      caption : `"We've come a long way since the bite fight"`,
       media : ["/cristiano_post.jpg"],
       likedTotal : 443,
       commentTotal : 0,
@@ -52,6 +51,39 @@ export const initialPosts: PostProps[] = [
       isLiked : false,
       isSaved : false,
     },
+    {
+      id : '4',
+      user : {
+          name : 'Marshall Mathers',
+          username : 'eminem',
+          profile_picture : '/people/eminem.jpg',
+          isVerified : true
+      },
+      caption : `Everybody is a doctor on DRE DAY. 💉`,
+      media : ["/cristiano_post.jpg"],
+      likedTotal : 443,
+      commentTotal : 0,
+      created_at : "A day ago",
+      isLiked : false,
+      isSaved : false,
+    },
+    {
+      id : '998',
+      user : {
+          name : authUser.name,
+          username : authUser.username,
+          profile_picture : authUser.profile_picture,
+          isVerified : false 
+      },
+      caption : `👀📸`,
+      media : ["/post/auth_post.jpg"],
+      likedTotal : 4300,
+      commentTotal : 2,
+      created_at : "A day ago",
+      isLiked : true,
+      isSaved : false,
+    },
+
 ]
 
     // {

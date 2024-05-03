@@ -10,6 +10,7 @@ import PostsProvider from "@/components/providers/PostsProvider";
 import CommentsProvider from "@/components/providers/CommentsProvider";
 import ChatCountProvider from "@/components/providers/ChatCountProvider";
 import GroupsProvider from "@/components/providers/GroupsProvider";
+import NotificationsProvider from "@/components/providers/NotificationsProvider";
 
 const open_s = Open_Sans({ 
   weight: ['400', '500', '700'],
@@ -39,7 +40,9 @@ export default function RootLayout({
                   <CommentsProvider>
                     <GroupsProvider>
                       <ChatCountProvider>
-                        {children}
+                        <NotificationsProvider>
+                          {children}
+                        </NotificationsProvider>
                       </ChatCountProvider>
                     </GroupsProvider>
                   </CommentsProvider>

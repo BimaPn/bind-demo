@@ -9,7 +9,7 @@ export const authUser : UserProfileProps = {
     followingTotal : 23,
     followerTotal : 621,
     isFollow : false,
-    isVerified : true,
+    isVerified : false,
     postTotal : 10,
     joinedAt : '32 July 2021',
 }
