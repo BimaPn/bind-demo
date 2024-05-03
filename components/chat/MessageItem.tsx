@@ -3,7 +3,7 @@ import { dateToTime } from "@/helpers/time"
 
 const MessageItem = ({message}:{message:Message}) => {
   const checkIsAuth = () => {
-    return message.username === authUser.username
+    return message.sender === authUser.username
   }
   return (
     <div className={`w-full flex items-center ${checkIsAuth() ? "justify-end" : "justify-start"}`}>

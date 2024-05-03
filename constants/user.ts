@@ -1,8 +1,8 @@
 import { UserProfileProps } from "@/types/user"
 
 export const authUser : UserProfileProps = {
-    name : 'Abdul Jabar',
-    username : 'abdul_jabar',
+    name : 'Wilson Walton',
+    username : 'wilson_walton',
     profile_picture : '/person.jpg',
     cover_photo : '/banner.jpg',
     bio : 'Guzzling, Fiery, Matter, Pure, Latch, Renew, Glimmer, Foundation, Crisis, Geometric, Sail, Biggest, Clear, Thundering',
@@ -103,6 +103,19 @@ export const initialUsers = [
     followerTotal : 621,
     isFollow : false,
     isVerified : true,
+    postTotal : 10,
+    joinedAt : '32 July 2021',
+  },
+  {
+    name : "Olivia Camila",
+    username : "oliviacamila",
+    profile_picture : '/people/person4.jpg',
+    cover_photo : '/images/group/default.jpg',
+    bio : 'Guzzling, Fiery, Matter, Pure, Latch, Renew, Glimmer, Foundation, Crisis, Geometric, Sail, Biggest, Clear, Thundering',
+    followingTotal : 23,
+    followerTotal : 621,
+    isFollow : false,
+    isVerified : false,
     postTotal : 10,
     joinedAt : '32 July 2021',
   },

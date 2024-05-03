@@ -1,5 +1,6 @@
 type Message = {
-  username: string
+  sender: string
+  receiver: string
   message: string
   created_at: string
 }

@@ -11,9 +11,14 @@ import BackButton from "../BackButton"
 import MessageItem from "./MessageItem"
 import { useMessages } from "../providers/MessagesProvider"
 import { authUser } from "@/constants/user"
+import { useChatList } from "../providers/ChatListProvider"
+import { useChatCount } from "../providers/ChatCountProvider"
+import { compareDate, formatDate } from "@/helpers/time"
 
 const ChatSection = ({username, userTarget}:{username: string,userTarget: UserChat}) => {
   const { getUsersMessages } = useMessages()
+  const { count, decreaseCount } = useChatCount()
+  const { addToList, clearUnread } = useChatList()
   const [messages, setMessages] = useState<Message[]>(getUsersMessages(username, userTarget.username))
   const messagesContainer = useRef<HTMLDivElement>(null) 
 
@@ -25,17 +30,23 @@ const ChatSection = ({username, userTarget}:{username: string,userTarget: UserCh
   };
 
   useEffect(() => {
+    if(count > 0 && userTarget.username === 'bimapn') {
+      decreaseCount()
+      clearUnread(userTarget.username)
+    }
+  },[])
+
+  useEffect(() => {
     scrollToBottom()
   },[messages])
 
-
   const addMessage = (message: Message) => {
-    // addToList({
-    //   user: userTarget,
-    //   message: message.message,
-    //   created_at:message.created_at,
-    //   isRead: true
-    // })
+    addToList({
+      user: userTarget,
+      message: message.message,
+      created_at:message.created_at,
+      isRead: true
+    })
     setMessages((prev) => [...prev, message])
   }
   return (
@@ -47,10 +58,16 @@ const ChatSection = ({username, userTarget}:{username: string,userTarget: UserCh
         <div className="flex flex-col gap-4 px-3 pb-2 pt-4">
           {messages.map((message, index) => (
           <li key={index} className="flex flex-col gap-4">
+            {index === 0 && (
+              <TimeBadge time={formatDate(message.created_at, true)} />
+            )}
+            {index > 0 && !compareDate(message.created_at, messages[index-1].created_at) && (
+              <TimeBadge time={formatDate(message.created_at, true)} />
+            )}
             <MessageItem message={message} />
           </li>
           ))}
-        </div>  
+        </div>
       </div>
       
       <Footer
@@ -96,11 +113,11 @@ const Footer = ({onSendMessage,targetUsername}:{onSendMessage: (message: Message
   },[message])
   const onSend = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log("haha")
     const newMessage = {
       message,
-      username: authUser.username,
-      created_at: "12.34 PM"
+      sender: authUser.username,
+      receiver: targetUsername,
+      created_at: new Date().toLocaleString() 
     }
     addMessage(newMessage)
     onSendMessage(newMessage)

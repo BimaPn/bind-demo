@@ -8,6 +8,7 @@ import ProgressbarProvider from "@/components/providers/ProgressbarProvider";
 import UsersProvider from "@/components/providers/UsersProvider";
 import PostsProvider from "@/components/providers/PostsProvider";
 import CommentsProvider from "@/components/providers/CommentsProvider";
+import ChatCountProvider from "@/components/providers/ChatCountProvider";
 
 const open_s = Open_Sans({ 
   weight: ['400', '500', '700'],
@@ -35,7 +36,9 @@ export default function RootLayout({
               <UsersProvider>
                 <PostsProvider>
                   <CommentsProvider>
-                    {children}
+                    <ChatCountProvider>
+                      {children}
+                    </ChatCountProvider>
                   </CommentsProvider>
                 </PostsProvider>
               </UsersProvider>

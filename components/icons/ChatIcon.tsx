@@ -1,17 +1,19 @@
 "use client"
 
-const chatCount = 2
+import { useChatCount } from "../providers/ChatCountProvider"
+
 
 const ChatIcon = ({width=24,active = false,className}:{width?:number,active?:boolean,className?:string}) => {
+  const { count } = useChatCount()
   return (
     <div className="relative">
       <ChatSvg width={width} active={active} className={className} />
-        {chatCount > 0 && (
-          <div className={`${chatCount <= 10 ? "w-[15px] text-[10px]":"w-4 text-[9px]"} absolute -top-1 -right-1 
+        {count > 0 && (
+          <div className={`${count <= 10 ? "w-[14px] font-semibold text-[9px]":"w-4 text-[9px]"} absolute -top-1 -right-1 
           flexCenter aspect-square rounded-full bg-red-500 font-bold text-white`}
           >
-          {(chatCount <= 10) && chatCount}
-          {(chatCount > 10) && `${chatCount}+`}
+          {(count <= 10) && count}
+          {(count > 10) && `${count}+`}
           </div>
         )}
 

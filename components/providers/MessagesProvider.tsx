@@ -12,9 +12,15 @@ const messagesContext = createContext<MessagesContext | null>(null)
 
 const MessagesProvider = ({children}:{children: React.ReactNode}) => {
   const [messages, setMessages] = useState<Message[]>(initial)
+  
+  const filterMessage = (sender: string, receiver: string) => {
 
+  }
   const getUsersMessages = (username1: string, username2: string) => {
-    return messages.filter((message) => (message.username === username1) || (message.username === username2))
+    return messages.filter((message) => {
+      return ((message.sender === username1) && (message.receiver === username2)) || 
+             ((message.sender === username2) && (message.receiver === username1))
+    })
   }
   const addMessage = (message: Message) => {
     setMessages((prev) => [...prev, message])

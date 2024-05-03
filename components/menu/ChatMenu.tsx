@@ -6,6 +6,7 @@ import Link from "next/link"
 import { formatDate } from "@/helpers/time"
 import { useChatList } from "../providers/ChatListProvider"
 import ChatListSkeleton from "../skeletons/ChatListSkeleton"
+import { VscVerifiedFilled } from "react-icons/vsc"
 
 const ChatMenu = () => {
   const path = usePathname()
@@ -34,7 +35,12 @@ const ChatItem = ({chat}:{chat:ChatItem}) => {
       <RoundedImage src={chat.user.profile_picture} alt="person" className="min-w-[42px]" />
       <div className="w-[95%] flex flex-col items-center overflow-hidden">
         <div className="w-full flexBetween">
-          <span>{chat.user.name}</span>
+          <div className="flex items-center gap-1">
+            <span>{chat.user.name}</span>
+            {chat.user.isVerified && (
+               <VscVerifiedFilled className='text-blue-500' />
+            )}
+          </div>
           <span className="text-[11px] text-gray-600 dark:text-d_semiLight">{formatDate(chat.created_at)}</span>
         </div>
         <div className="w-full flexBetween">
