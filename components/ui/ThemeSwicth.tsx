@@ -6,7 +6,6 @@ const ThemeSwitch = ({children,className}:{children :React.ReactNode,className?:
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
 
-  // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -16,7 +15,6 @@ const ThemeSwitch = ({children,className}:{children :React.ReactNode,className?:
   }
   const buttonClick = (e:React.MouseEvent) => {
     e.stopPropagation()
-    console.log("change")
     theme == "dark"? setTheme('light'): setTheme("dark")
   }
   return (

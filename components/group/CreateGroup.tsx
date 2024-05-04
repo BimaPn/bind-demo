@@ -19,8 +19,8 @@ const CreateGroup = ({children,className}:{children:React.ReactNode,className?:s
       className="h-screen sm:!h-fit"
       >
       <Modal.Body className="ss:rounded-b-xl rounded-none">
-          <FormCreateGroup />
-        </Modal.Body>
+        <FormCreateGroup />
+      </Modal.Body>
       </Modal>
     </>
   )

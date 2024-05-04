@@ -4,27 +4,33 @@ import Modal from '../ui/Modal'
 import { GroupProps } from '@/types/group'
 import FormUpdateGroup from './FormUpdateGroup'
 
-const EditGroup = ({id,group_picture,name,description}:Pick<GroupProps,'id'|'group_picture'|'name'|'description'>) => {
+const EditGroup = ({id,group_picture,name,description, children}:Pick<GroupProps,'id'|'group_picture'|'name'|'description'> & {children: React.ReactNode}) => {
     const [isOpenModal,setIsOpenModal] = useState<boolean>(false)
+
+    const toggleModal = (e:React.MouseEvent) => {
+      e.stopPropagation()
+      setIsOpenModal(prev => !prev)
+    }
   return (
     <div>
-        <button 
-        onClick={() => setIsOpenModal(prev => !prev)} 
-        className="py-2 px-4 bg-semiLight dark:bg-d_netral font-medium rounded-full">
-            Edit group
-        </button>
-        <Modal 
-        title="Edit Group" 
-        show={isOpenModal} 
-        onClose={() => setIsOpenModal(false)} >
-          <FormUpdateGroup 
-          groupId={id} 
-          defaultPicture={group_picture} 
-          defaultName={name} 
-          defaultDesc={description}
-          onClose={() => setIsOpenModal(false)}
-          />
-        </Modal>
+      <button 
+      onClick={toggleModal} 
+      className='w-full'
+      >
+      {children}
+      </button>
+      <Modal 
+      title="Edit Group" 
+      show={isOpenModal} 
+      onClose={() => setIsOpenModal(false)} >
+        <FormUpdateGroup 
+        groupId={id} 
+        defaultPicture={group_picture} 
+        defaultName={name} 
+        defaultDesc={description}
+        onClose={() => setIsOpenModal(false)}
+        />
+      </Modal>
     </div>
   )
 }

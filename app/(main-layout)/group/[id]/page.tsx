@@ -7,12 +7,9 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const group = groups.find((group) => group.id === params.id);
-  if(!group) {
-    throw Error("Group is not found.")
-  }
+  let group = groups.find((group) => group.id === params.id);
   return {
-    title: group.name 
+    title: group ? group.name : "Group Detail"
   };
 }
 

@@ -1,15 +1,17 @@
 'use client'
 import {useEffect, useState} from 'react'
-import { GroupErrorsProps } from '@/types/group'
-import { useRouter } from 'next/navigation'
 import ImageInput from '../ui/ImageInput'
 import TextArea from '../ui/TextArea'
 import InputError from '../ui/InputError'
+import { GroupProps } from '@/types/group'
+import { useGroups } from '../providers/GroupsProvider'
+import { useRouter } from 'next-nprogress-bar'
 
 const FormCreateGroup = () => {
+  const { addGroup } = useGroups()
   const [isDisableBtn,setIsDisableBtn] = useState<boolean>(true)
-  const [errors,setErrors] = useState<GroupErrorsProps>()
   const router = useRouter()
+
   const [formData,setFormData] = useState({
     group_picture : null,
     name : '',
@@ -26,6 +28,20 @@ const FormCreateGroup = () => {
 
   const formSubmit = (e:React.FormEvent) => {
     e.preventDefault()
+    setIsDisableBtn(true)
+    const picture = formData.group_picture ?? "/images/group/default.jpg"
+    const newGroup: GroupProps = {
+      id: `group-${Date.now()}_${Math.random()}`,
+      name: formData.name,
+      description: formData.description,
+      group_picture: picture,
+      memberTotal: 1,
+      isJoin: true,
+      isAdmin: true
+    }
+
+    addGroup(newGroup)
+    router.push(`/group/${newGroup.id}`)
   }
   return (
     <form onSubmit={formSubmit} className='flex flex-col'>
@@ -34,7 +50,6 @@ const FormCreateGroup = () => {
     onChange={(file) => setFormData((prev) => ({...prev,group_picture : file}))}
     imageRatio='2.35/1'
     />
-    <InputError message={errors?.group_picture && errors.group_picture[0]} />
     <div className='flex flex-col gap-4 mt-4 px-4'>
         <div>
             <input 
@@ -44,7 +59,6 @@ const FormCreateGroup = () => {
             type="text"
             placeholder="Name" 
             />
-            <InputError message={errors?.name && errors.name[0]} />
         </div>
         <div>
           <TextArea
@@ -54,12 +68,11 @@ const FormCreateGroup = () => {
           placeholder="Description"
           className='min-h-[36px] pl-2 rounded-xl' 
           />
-          <InputError message={errors?.description && errors.description[0]} />
         </div>
         <div className="flex items-center justify-end px-4 h-16 bg-white">
             <button 
             disabled={isDisableBtn} 
-            className="px-8 py-2 bg-dark text-light font-medium rounded-full disabled:opacity-40 disabled:cursor-not-allowed">
+            className="px-6 py-2 bg-dark text-light font-medium text-sm rounded-full disabled:opacity-40 disabled:cursor-not-allowed">
                 Create
             </button>
         </div>

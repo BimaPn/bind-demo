@@ -8,6 +8,8 @@ type GroupsContext = {
   groupsJoined: () => GroupProps[]
   groupsDiscover: () => GroupProps[]
   findGroup: (id: string) => GroupProps
+  addGroup: (group: GroupProps) => void
+  updateGroup: (updatedGroup: Pick<GroupProps,'id'|'group_picture'|'name'|'description'>) => void
   join: (groupId: string) => void
   leave: (groupId: string) => void
 }
@@ -22,6 +24,21 @@ const GroupsProvider = ({children}:{children: React.ReactNode}) => {
       throw Error("Group not found")
     }
     return group
+  }
+  const addGroup = (group: GroupProps) => {
+    setGroups((prev) => [group, ...prev])
+  }
+  const updateGroup = (updatedGroup: Pick<GroupProps,'id'|'group_picture'|'name'|'description'>) => {
+    setGroups((prev) => {
+      return prev.map((group) => {
+        if(group.id === updatedGroup.id) {
+          group.name = updatedGroup.name 
+          group.description = updatedGroup.description
+          group.group_picture = updatedGroup.group_picture
+        }
+        return group
+      })
+    })
   }
   const groupsJoined = () => {
     return groups.filter((group) => group.isJoin)
@@ -55,8 +72,10 @@ const GroupsProvider = ({children}:{children: React.ReactNode}) => {
       groupsJoined,
       groupsDiscover,
       findGroup,
+      addGroup,
       join,
-      leave
+      leave,
+      updateGroup
     }}
     >
     {children}

@@ -52,7 +52,7 @@ const Content = () => {
     router.push(notification.link)
   }
   return (
-    <div className="w-full h-full flex flex-col bg-white rounded-xl shadow py-2 pt-3">
+    <div className="w-full h-full flex flex-col bg-white dark:bg-d_semiDark rounded-xl shadow py-2 pt-3">
       <div className="mb-1 px-4">
         <span className="text-lg font-semibold">Notification</span>
       </div>
@@ -71,7 +71,7 @@ const Content = () => {
 
 export const NotificationItem = ({notification}:{notification: NotificationItem}) => {
   return (
-    <div className={`flexBetween py-2 group rounded-xl px-2 ${!notification.isRead && 'bg-semiLight'}`}>
+    <div className={`flexBetween py-2 group rounded-xl px-2 ${!notification.isRead && 'bg-semiLight dark:bg-d_netral'}`}>
       <div className='basis-[85%] flex gap-2'>
         <RoundedImage src={notification.notifier.profile_picture} className="min-w-[40px] !w-[40px]" alt='profile_picture' />
         <div className='flex flex-col'>
@@ -82,7 +82,9 @@ export const NotificationItem = ({notification}:{notification: NotificationItem}
         </div>
       </div>
       <div className='flex items-center gap-2'>
-        <div className={`w-8 aspect-square hidden group-hover:flex items-center justify-center rounded-full ${notification.isRead ? "bg-semiLight":"bg-white"}`}>
+        <div className={`w-8 aspect-square hidden group-hover:flex items-center justify-center rounded-full
+        ${notification.isRead ? "bg-semiLight dark:bg-d_netral":"bg-white dark:bg-d_semiDark"}`}
+        >
           <HiOutlineDotsHorizontal className='text-xl' />
         </div>
         {!notification.isRead && (

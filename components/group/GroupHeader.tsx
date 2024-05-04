@@ -8,6 +8,10 @@ import PageHeader from "../PageHeader"
 import CreatePostModal from "../post/CreatePostModal"
 import { IoIosAddCircleOutline } from "react-icons/io"
 import EditGroup from "./EditGroup"
+import Dropdown from "../ui/Dropdown"
+import { CiEdit } from "react-icons/ci"
+import { AiOutlineDelete } from "react-icons/ai"
+import { GroupProps } from "@/types/group"
 
 const GroupHeader = ({groupId}:{groupId: string}) => {
   const { findGroup } = useGroups()
@@ -24,13 +28,15 @@ const GroupHeader = ({groupId}:{groupId: string}) => {
       </CreatePostModal>
     </PageHeader>
 
-    <section className="bg-light dark:bg-d_semiDark sm:shadow rounded-none ss:rounded-t-xl ss:overflow-hidden">
+    <section className="bg-light dark:bg-d_semiDark sm:shadow rounded-none ss:rounded-t-xl">
         <div className="aspect-[2.35/1] relative">
-            <Image 
-            src={group.group_picture}
-            fill
-            objectFit="cover"
-            alt="group picture"/>
+          <Image 
+          src={group.group_picture}
+          fill
+          objectFit="cover"
+          alt="group picture"
+          className="ss:rounded-t-xl"
+          />
         </div>
 
     <div className="pb-3 flex flex-col px-4 pt-4 text-dark dark:text-d_light">
@@ -43,18 +49,18 @@ const GroupHeader = ({groupId}:{groupId: string}) => {
         </div>
         <div className="flex flex-row ss:flex-row-reverse items-center gap-[6px]">
           <GroupJoinButton 
-          isJoin={group.isJoin}
           groupId={group.id}
+          isJoin={group.isJoin}
           className="!w-full ss:!w-fit"
           />
-          <div className="ss:block hidden">
-            {group.isAdmin && (
-              <EditGroup id={group.id} name={group.name} description={group.description} group_picture={group.group_picture}/>
-            )}
-          </div>
-          <button className="px-[10px] aspect-square rounded-full bg-semiLight dark:bg-d_netral text-dark dark:text-light">
-            < BsThreeDots className="text-xl" />
-          </button>
+          {group.isAdmin && (
+            <GroupDropdown
+            id={group.id}
+            name={group.name} 
+            group_picture={group.group_picture}
+            description={group.description}
+            />
+          )}
         </div>
       </div>
     </div>
@@ -62,5 +68,42 @@ const GroupHeader = ({groupId}:{groupId: string}) => {
     </>
   )
 }
+
+const GroupDropdown = ({id, group_picture, name, description}:Pick<GroupProps,'id'|'group_picture'|'name'|'description'>) => {
+  return (
+    <Dropdown>  
+      <Dropdown.Trigger>
+        <div className="flexCenter px-[10px] aspect-square rounded-full bg-semiLight dark:bg-d_netral text-dark dark:text-light">
+          <BsThreeDots className="text-xl" />
+        </div>
+      </Dropdown.Trigger>
+
+      <Dropdown.Content className="right-0 w-40 text-dark dark:text-d_light">
+        <ul className="bg-light dark:bg-d_semiDark flex flex-col shadow rounded-lg py-2 px-2">
+          <li>
+            <EditGroup
+            id={id}
+            group_picture={group_picture}
+            name={name}
+            description={description}
+            >
+            <div className="flex items-center gap-2 py-2 px-1 hover:bg-semiLight dark:hover:bg-d_netral rounded-lg">
+              <CiEdit className="text-xl" />
+              <span>Edit Group</span>
+            </div>
+            </EditGroup>
+          </li>
+          <li className="flex items-center gap-2 py-2 px-1 hover:bg-semiLight dark:hover:bg-d_netral rounded-lg">
+            <AiOutlineDelete className="text-xl" />
+            <span>Delete Group</span>
+          </li>
+        </ul>
+      </Dropdown.Content>
+    </Dropdown> 
+  )
+}
+
+
+              // <EditGroup id={group.id} name={group.name} description={group.description} group_picture={group.group_picture}/>
 
 export default GroupHeader

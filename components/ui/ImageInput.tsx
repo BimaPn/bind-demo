@@ -20,7 +20,7 @@ const ImageInput = ({defaultImage,className,onChange,imageRatio = "3/1"}:InputIm
       if (selectedFile) {
           const blob = URL.createObjectURL(selectedFile);
           if(onChange){
-            onChange(selectedFile)
+            onChange(blob)
           }
           setImagePreview(blob)
       }

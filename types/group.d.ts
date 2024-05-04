@@ -28,7 +28,7 @@ export type GroupErrorsProps = {
     group_picture : array,
 }
 export type UpdateGroupProps = {
-    groupId: string | number,
+    groupId: string,
     defaultPicture:string,
     defaultName:string,
     defaultDesc:string

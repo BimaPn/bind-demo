@@ -30,11 +30,11 @@ const Modal = ({show,title,children,onClose,className}:ModalBoxProps) => {
         onClick={(e) => e.stopPropagation()}
         className={`relative w-[662px] sm:!max-h-[90%] flex flex-col bg-light dark:bg-d_semiDark ss:rounded-xl z-[997] ${className}`}>
             {/* header */}
-            <div className="top-0 left-0 right-0 flex items-center gap-4 text-dark dark:text-d_light py-3 px-4">
+            <div className="top-0 left-0 right-0 flex items-center gap-2 text-dark dark:text-d_light py-3 px-4">
                 <button onClick={buttonClick}>
-                    <PiArrowLeft className="text-2xl" />
+                    <PiArrowLeft className="text-xl" />
                 </button>
-                <span className="font-medium text-xl">{title}</span>
+                <span className="font-medium">{title}</span>
             </div>
             {children}
         </div>
