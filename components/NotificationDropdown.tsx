@@ -7,6 +7,7 @@ import { formatDate } from "@/helpers/time"
 import Dropdown from "./ui/Dropdown"
 import NotificationIcon from "./icons/NotificationIcon"
 import RoundedImage from "./ui/RoundedImage"
+import { useNotifications } from "./providers/NotificationsProvider"
 
 const unreadCount = 2
 const NotificationDropdown = () => {
@@ -28,7 +29,7 @@ const NotificationDropdown = () => {
               </div>
             </div>
         </Dropdown.Trigger>
-        <Dropdown.Content className="!fixed md:!absolute right-3 md:right-0 !top-12 md:!top-10 w-[354px] aspect-[3/4.5]">
+        <Dropdown.Content className="!fixed md:!absolute right-3 md:right-0 !top-12 md:!top-10 w-[384px] aspect-[3/4.5]">
           <Content />
         </Dropdown.Content>
       </Dropdown>
@@ -38,14 +39,16 @@ const NotificationDropdown = () => {
 }
 
 const Content = () => {
+  const { notifications } = useNotifications()
   return (
     <div className="w-full h-full flex flex-col bg-white rounded-xl shadow py-2 pt-3">
       <div className="mb-1 px-4">
         <span className="text-lg font-semibold">Notification</span>
       </div>
-      <div className="flex flex-col gap-1 grow overflow-auto px-4">
-
-
+      <div className="flex flex-col gap-1 grow overflow-auto px-2">
+        {notifications.map((notification, index) => (
+          <NotificationItem key={index} notification={notification} />
+        ))}
       </div>
     </div>  
   )
@@ -54,18 +57,18 @@ const Content = () => {
 
 export const NotificationItem = ({notification}:{notification: NotificationItem}) => {
   return (
-    <div className='flexBetween py-[10px] border-b group cursor-pointer'>
-      <div className='flex gap-3'>
-        <RoundedImage src={notification.sender.profile_picture} alt='profile_picture' />
+    <div className={`flexBetween py-2 group cursor-pointer rounded-xl px-2 ${!notification.isRead && 'bg-semiLight'}`}>
+      <div className='basis-[85%] flex gap-2'>
+        <RoundedImage src={notification.notifier.profile_picture} className="min-w-[40px] !w-[40px]" alt='profile_picture' />
         <div className='flex flex-col'>
           <div className="text-[15px]">
-            <span className='font-semibold'>{notification.sender.name}</span> {notification.message} 
+            <span className='font-semibold'>{notification.notifier.name}</span> {notification.message} 
           </div>
-          <span className='text-gray-500 text-sm'>{formatDate(notification.created_at)}</span>
+          <span className='text-gray-600 text-[13px]'>{notification.created_at}</span>
         </div>
       </div>
       <div className='flex items-center gap-2'>
-        <div className='w-8 aspect-square hidden group-hover:flex items-center justify-center rounded-full bg-semiLight'>
+        <div className={`w-8 aspect-square hidden group-hover:flex items-center justify-center rounded-full ${notification.isRead ? "bg-semiLight":"bg-white"}`}>
           <HiOutlineDotsHorizontal className='text-xl' />
         </div>
         <div className='w-2 aspect-square rounded-full bg-blue-500' />

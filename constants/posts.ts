@@ -52,7 +52,7 @@ export const initialPosts: PostProps[] = [
       isSaved : false,
     },
     {
-      id : '4',
+      id : '5',
       user : {
           name : 'Marshall Mathers',
           username : 'eminem',

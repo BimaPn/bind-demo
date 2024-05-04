@@ -15,9 +15,9 @@ const SuggestionUsers = () => {
         <h4 className="font-medium">Suggestion for you</h4>
       </div>
         <ul className="flex flex-col gap-[18px] mt-4 mb-4">
-          {users.map((user) => (
+          {users.map((user, index) => (
             <UserItem 
-            key={user.name}
+            key={index}
             name={user.name}
             username={user.username}
             image={user.profile_picture}

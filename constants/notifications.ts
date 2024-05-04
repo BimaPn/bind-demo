@@ -5,7 +5,7 @@ export const notifications: NotificationItem[] = [
       username : "oliviacamila",
       profile_picture : '/people/person4.jpg',
     },
-    message: "Commented your post '👀📸'.",
+    message: "Commented your post ' 👀📸 '.",
     isRead: false,
     link: "/post/998",
     created_at: "15m"
@@ -16,7 +16,7 @@ export const notifications: NotificationItem[] = [
       username : 'bimapn',
       profile_picture : '/people/bima_pn.jpg',
     },
-    message: "Commented your post '👀📸'.",
+    message: "Commented your post ' 👀📸 '.",
     isRead: false,
     link: "/post/998",
     created_at: "30m"
@@ -27,8 +27,8 @@ export const notifications: NotificationItem[] = [
       username : 'bimapn',
       profile_picture : '/people/bima_pn.jpg',
     },
-    message: "Liked your post '👀📸'.",
-    isRead: false,
+    message: "Liked your post ' 👀📸 '.",
+    isRead: true,
     link: "/post/998",
     created_at: "30m"
   },
