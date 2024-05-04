@@ -10,6 +10,8 @@ type GroupsContext = {
   findGroup: (id: string) => GroupProps
   addGroup: (group: GroupProps) => void
   updateGroup: (updatedGroup: Pick<GroupProps,'id'|'group_picture'|'name'|'description'>) => void
+  deleteGroup: () => void
+  markDelete: (groupId: string) => void
   join: (groupId: string) => void
   leave: (groupId: string) => void
 }
@@ -40,6 +42,21 @@ const GroupsProvider = ({children}:{children: React.ReactNode}) => {
       })
     })
   }
+  const deleteGroup = () => {
+    setGroups((prev) => {
+      return prev.filter((group) => !group.isDeleted)
+    })
+  }
+  const markDelete = (groupId: string) => {
+    setGroups((groups) => {
+      return groups.map((group) => {
+        if(group.id === groupId) {
+          group.isDeleted = true
+        }
+        return group
+      })
+    })
+  }
   const groupsJoined = () => {
     return groups.filter((group) => group.isJoin)
   }
@@ -61,6 +78,9 @@ const GroupsProvider = ({children}:{children: React.ReactNode}) => {
       return groups.map((group) => {
         if(group.id === groupId) {
           group.isJoin = false 
+          if(group.isAdmin) {
+            delete group.isAdmin
+          }
         }
         return group
       })
@@ -75,7 +95,9 @@ const GroupsProvider = ({children}:{children: React.ReactNode}) => {
       addGroup,
       join,
       leave,
-      updateGroup
+      updateGroup,
+      deleteGroup,
+      markDelete
     }}
     >
     {children}

@@ -13,6 +13,7 @@ export type GroupProps = {
     memberTotal : number,
     isAdmin?: boolean
     isJoin : boolean,
+    isDeleted?: boolean
 }
 export type GroupCardProps = {
     id : string,

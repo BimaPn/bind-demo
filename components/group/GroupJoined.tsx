@@ -9,10 +9,11 @@ import GroupCard from "./GroupCard"
 import Link from "next/link"
 
 const GroupJoined = () => {
-  const { groupsJoined } = useGroups()
+  const { groupsJoined, deleteGroup } = useGroups()
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
+    deleteGroup()
     setLoaded(true)
   },[])
 

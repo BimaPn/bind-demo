@@ -2,7 +2,7 @@
 import { BsThreeDots } from "react-icons/bs"
 import Image from "next/image"
 import GroupJoinButton from "./GroupJoinButton"
-import { useContext, useState} from "react"
+import { useContext, useEffect, useState} from "react"
 import { useGroups } from "../providers/GroupsProvider"
 import PageHeader from "../PageHeader"
 import CreatePostModal from "../post/CreatePostModal"
@@ -12,10 +12,12 @@ import Dropdown from "../ui/Dropdown"
 import { CiEdit } from "react-icons/ci"
 import { AiOutlineDelete } from "react-icons/ai"
 import { GroupProps } from "@/types/group"
+import { useRouter } from "next-nprogress-bar"
 
 const GroupHeader = ({groupId}:{groupId: string}) => {
   const { findGroup } = useGroups()
   const [group, setGroup] = useState(findGroup(groupId))
+
   return (
     <>
     <PageHeader title={group.name} showWideScreen={false} className="ss:hidden block">
@@ -55,10 +57,7 @@ const GroupHeader = ({groupId}:{groupId: string}) => {
           />
           {group.isAdmin && (
             <GroupDropdown
-            id={group.id}
-            name={group.name} 
-            group_picture={group.group_picture}
-            description={group.description}
+            group={group}
             />
           )}
         </div>
@@ -69,7 +68,17 @@ const GroupHeader = ({groupId}:{groupId: string}) => {
   )
 }
 
-const GroupDropdown = ({id, group_picture, name, description}:Pick<GroupProps,'id'|'group_picture'|'name'|'description'>) => {
+const GroupDropdown = ({group}:{group: GroupProps}) => {
+  const { markDelete } = useGroups()
+  const router = useRouter()
+  const deleteButton = (e: React.MouseEvent) => {
+    e.preventDefault()
+    let isDelete = confirm("Are you sure you want to delete this group ?")
+    if(!isDelete) return;
+   
+    markDelete(group.id)
+    router.push(`/group`)
+  }
   return (
     <Dropdown>  
       <Dropdown.Trigger>
@@ -82,10 +91,10 @@ const GroupDropdown = ({id, group_picture, name, description}:Pick<GroupProps,'i
         <ul className="bg-light dark:bg-d_semiDark flex flex-col shadow rounded-lg py-2 px-2">
           <li>
             <EditGroup
-            id={id}
-            group_picture={group_picture}
-            name={name}
-            description={description}
+            id={group.id}
+            group_picture={group.group_picture}
+            name={group.name}
+            description={group.description}
             >
             <div className="flex items-center gap-2 py-2 px-1 hover:bg-semiLight dark:hover:bg-d_netral rounded-lg">
               <CiEdit className="text-xl" />
@@ -93,17 +102,16 @@ const GroupDropdown = ({id, group_picture, name, description}:Pick<GroupProps,'i
             </div>
             </EditGroup>
           </li>
-          <li className="flex items-center gap-2 py-2 px-1 hover:bg-semiLight dark:hover:bg-d_netral rounded-lg">
-            <AiOutlineDelete className="text-xl" />
-            <span>Delete Group</span>
+          <li>
+            <button onClick={deleteButton} className="flex items-center gap-2 py-2 px-1 hover:bg-semiLight dark:hover:bg-d_netral rounded-lg">
+              <AiOutlineDelete className="text-xl" />
+              <span>Delete Group</span>
+            </button>
           </li>
         </ul>
       </Dropdown.Content>
     </Dropdown> 
   )
 }
-
-
-              // <EditGroup id={group.id} name={group.name} description={group.description} group_picture={group.group_picture}/>
 
 export default GroupHeader
