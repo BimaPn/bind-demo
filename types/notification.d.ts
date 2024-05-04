@@ -10,6 +10,7 @@ type NotificationEntity = {
 }
 
 type NotificationItem = {
+  id: string
   notifier: {
     name: string
     username: string

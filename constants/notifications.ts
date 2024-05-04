@@ -1,5 +1,6 @@
 export const notifications: NotificationItem[] = [
   {
+    id: "1",
     notifier: {
       name : "Olivia Camila",
       username : "oliviacamila",
@@ -11,17 +12,19 @@ export const notifications: NotificationItem[] = [
     created_at: "15m"
   },
   {
+    id: "2",
     notifier: {
       name : 'Bima PN',
       username : 'bimapn',
       profile_picture : '/people/bima_pn.jpg',
     },
     message: "Commented your post ' 👀📸 '.",
-    isRead: false,
+    isRead: true,
     link: "/post/998",
     created_at: "30m"
   },
   {
+    id: "3",
     notifier: {
       name : 'Bima PN',
       username : 'bimapn',
@@ -33,6 +36,7 @@ export const notifications: NotificationItem[] = [
     created_at: "30m"
   },
   {
+    id: "4",
     notifier: {
       name : 'Mike Tyson',
       username : 'mike_tyson',
@@ -44,6 +48,7 @@ export const notifications: NotificationItem[] = [
     created_at: "1d"
   },
   {
+    id: "5",
     notifier: {
       name : 'Bima PN',
       username : 'bimapn',
@@ -55,6 +60,7 @@ export const notifications: NotificationItem[] = [
     created_at: "3d"
   },
   {
+    id: "6",
     notifier: {
       name : 'Fabian Azhar',
       username : 'fabian',
