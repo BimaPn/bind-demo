@@ -5,8 +5,19 @@ import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai"
 import { IoWarningOutline } from "react-icons/io5"
 import PostDelete from "./PostDelete"
 import { PostEditContextProps } from "@/types/post"
+import PostEdit from "./PostEdit"
 
-const PostOptionDropdown = ({isAuthor, postId}:{isAuthor:boolean, postId: string}) => {
+const PostOptionDropdown = ({
+  isAuthor,
+  postId,
+  caption,
+  media
+  }:{
+    isAuthor:boolean,
+    postId: string,
+    caption?: string,
+    media?: string[]
+  }) => {
   return (
     <Dropdown>
         <Dropdown.Trigger>
@@ -22,10 +33,17 @@ const PostOptionDropdown = ({isAuthor, postId}:{isAuthor:boolean, postId: string
             </div>
             {isAuthor && (
             <>                
-            <button className="flex justify-start items-center py-1 rounded hover:bg-light dark:hover:bg-d_semiLight dark:hover:text-dark">
-                <AiOutlineEdit className="w-10 text-xl" />
-                <span>Edit post</span>
-            </button>
+            <PostEdit
+            id={postId}
+            caption={caption} 
+            media={media}
+            className="w-full"
+            >
+              <div className="flex justify-start items-center py-1 rounded hover:bg-light dark:hover:bg-d_semiLight dark:hover:text-dark">
+                  <AiOutlineEdit className="w-10 text-xl" />
+                  <span>Edit post</span>
+              </div>
+            </PostEdit>
 
             <PostDelete postId={postId} className="flex justify-start items-center py-1 rounded hover:bg-light dark:hover:bg-d_semiLight dark:hover:text-dark">
                 <AiOutlineDelete className="w-10 text-xl" />

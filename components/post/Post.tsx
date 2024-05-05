@@ -27,27 +27,36 @@ const Post = (
 }
 :PostProps & {hover?:boolean, playInView?: boolean}) => {
   return (
-    <div className={`w-full bg-light dark:bg-d_semiDark px-2 ss:px-4 pt-3 pb-[6px] sm:pt-[12px] sm:pb-[10px] rounded-none ss:rounded-xl ${hover && 'hover:bg-slate-50'}`}>
-        <Header id={id} user={user} created_at={created_at} />
-        <div className="flex flex-col gap-2 pt-2 pb-[10px]">
-            {caption && (
-                <p>
-                    {caption}
-                </p>
+    <div
+    className={`w-full bg-light dark:bg-d_semiDark px-2 ss:px-4 pt-3 pb-[6px] sm:pt-[12px] 
+    sm:pb-[10px] rounded-none ss:rounded-xl ${hover && 'hover:bg-slate-50'}`}
+    >
+      <Header
+      id={id} 
+      user={user}
+      created_at={created_at}
+      caption={caption}
+      media={media}
+      />
+      <div className="flex flex-col gap-2 pt-2 pb-[10px]">
+          {caption && (
+              <p>
+                {caption}
+              </p>
+          )}
+          <div className="-mx-1">
+            {media?.length != 0 && (
+              <PostMedia media={media!} playInView={playInView}/>
             )}
-            <div className="-mx-1">
-              {media?.length != 0 && (
-                <PostMedia media={media!} playInView={playInView}/>
-              )}
-            </div>
+          </div>
 
-        </div>
-        <Footer id={id} isLiked={isLiked} isSaved={isSaved} likedTotal={likedTotal} commentTotal={commentTotal} />
+      </div>
+      <Footer id={id} isLiked={isLiked} isSaved={isSaved} likedTotal={likedTotal} commentTotal={commentTotal} />
     </div>
   )
 }
 
-const Header = ({id,user,created_at}:Pick<PostProps,"user" | "created_at" | 'id'>) => {
+const Header = ({id,user,caption,media,created_at}:Pick<PostProps,"user" | "created_at" | 'id' | 'caption' | 'media'>) => {
     return (
         <div className="flexBetween">
             <div className="flex items-center gap-2">
@@ -78,10 +87,12 @@ const Header = ({id,user,created_at}:Pick<PostProps,"user" | "created_at" | 'id'
                 </div>
             </div>
             <div onClick={(e) => e.stopPropagation()}>
-                <PostOptionDropdown 
-                postId={id as string}
-                isAuthor={user.username === authUser.username} 
-                />
+              <PostOptionDropdown 
+              postId={id as string}
+              isAuthor={user.username === authUser.username} 
+              caption={caption}
+              media={media}
+              />
             </div>
         </div>
     )

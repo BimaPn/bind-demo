@@ -1,7 +1,7 @@
 "use client"
 
 import { initialPosts } from "@/constants/posts"
-import { PostProps } from "@/types/post"
+import { PostProps, PostUpdateProps } from "@/types/post"
 import { createContext, useContext, useState } from "react"
 
 type PostContext = {
@@ -13,6 +13,7 @@ type PostContext = {
   unsaved: (postId: string|number) => void
   savedPosts: () => PostProps[]
   findPost: (postId: string) => PostProps
+  updatePost: (postId: string, updatedData: PostUpdateProps) => void
   deletePost: (postId: string) => void 
   userPosts: (username: string, fullMedia?:boolean) => PostProps[]
 }
@@ -31,6 +32,19 @@ const PostsProvider = ({children}:{children: React.ReactNode}) => {
     }
     return post
   }
+  const updatePost = (postId: string, updatedData: PostUpdateProps) => {
+    console.log(updatedData.media)
+    setPosts((prev) => {
+      return prev.map((post) => {
+        if(post.id === postId) {
+          post.caption = updatedData.caption ?? ""
+          post.media = updatedData.media
+        }
+        return post 
+      })
+    })
+  }
+  
   const deletePost = (postId: string) => {
     setPosts((prev) => {
       return prev.filter((post) => post.id !== postId)
@@ -98,6 +112,7 @@ const PostsProvider = ({children}:{children: React.ReactNode}) => {
       savedPosts,
       userPosts,
       findPost,
+      updatePost,
       deletePost
       }}>
     {children}

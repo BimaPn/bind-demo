@@ -38,6 +38,10 @@ const Content = ({children, showFromBottom=true, className}:{children : React.Re
         </div>
     )
 } 
+
+export const useDropdown = () => {
+  return useContext(dropDownContext) as DropdownProps
+}
 Dropdown.Trigger = Trigger
 Dropdown.Content = Content
 export default Dropdown

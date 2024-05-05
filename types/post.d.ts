@@ -13,10 +13,8 @@ export type CreatePostFormProps = {
     media ?: string[]
 }
 export type PostUpdateProps = {
-    caption ?: string,
-    media_new ?: File[],
-    media_delete_id ?: array,
-    _method ?: string
+    caption?: string,
+    media?: string[]
 }
 export type NewPostProps = {
     user : {

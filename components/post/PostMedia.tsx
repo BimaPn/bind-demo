@@ -69,7 +69,7 @@ const ShowMedia = ({src, playInView}:{src: string, playInView: boolean}) => {
   const isVideo = /\.(mp4|mov|avi)$/.test(src)
   return (
     <>
-    {isImage && (
+    {(isImage || src.includes('blob')) && (
       <Image src={src}
       width={700} height={700}
       className="w-full h-auto"
