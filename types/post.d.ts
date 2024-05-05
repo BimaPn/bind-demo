@@ -31,6 +31,7 @@ export type PostMediaProps = {
 }
 export type PostProps = {
     id : string | number,
+    groupId?: string
     user : {
         name : string,
         username : string,

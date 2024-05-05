@@ -1,9 +1,10 @@
 import { Metadata } from 'next';
 import GroupHeader from '@/components/group/GroupHeader';
 import { groups } from '@/constants/groups';
+import GroupBody from '@/components/group/GroupBody';
 
 type Props = {
-  params: { id: string | number };
+  params: { id: string };
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -16,7 +17,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const page = async ({params}:Props) => {
   return (
     <>    
-      <GroupHeader groupId={params.id as string} />
+      <GroupHeader groupId={params.id} />
+      <GroupBody groupId={params.id}/>
     </>
   )
 }

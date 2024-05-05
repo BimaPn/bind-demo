@@ -11,7 +11,7 @@ import PickEmoji from '../PickEmoji'
 import { authUser } from '@/constants/user'
 import { usePosts } from '../providers/PostsProvider'
 
-const FormCreatePost = ({groupId = null,mobile = false,onClose}:{groupId ?: string | number | null,mobile?:boolean,onClose?:()=>void}) => {
+const FormCreatePost = ({groupId, mobile = false, onClose}:{groupId?: string,mobile?:boolean,onClose?:()=>void}) => {
     const [isDisableBtn,setIsDisableBtn] = useState<boolean>(true)
     const { addPost } = usePosts()
     const [formData,setFormData] = useState<CreatePostFormProps>({
@@ -31,6 +31,7 @@ const FormCreatePost = ({groupId = null,mobile = false,onClose}:{groupId ?: stri
       e.preventDefault()
       setIsDisableBtn(true)
       const newPost = {
+        groupId,
         id: `post-${Date.now()}_${Math.random()}`,
         user: {
           name: authUser.name,

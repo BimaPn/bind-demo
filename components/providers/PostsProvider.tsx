@@ -16,6 +16,7 @@ type PostContext = {
   updatePost: (postId: string, updatedData: PostUpdateProps) => void
   deletePost: (postId: string) => void 
   userPosts: (username: string, fullMedia?:boolean) => PostProps[]
+  groupPosts: (groupId: string) => PostProps[] 
 }
 const postContext = createContext<PostContext | null>(null)
 
@@ -25,6 +26,7 @@ const PostsProvider = ({children}:{children: React.ReactNode}) => {
   const addPost = (post: PostProps) => {
     setPosts((prev) => [post, ...prev])
   }
+
   const findPost = (postId: string) => {
     const post = posts.find((post) => post.id === postId)
     if(!post) {
@@ -32,6 +34,7 @@ const PostsProvider = ({children}:{children: React.ReactNode}) => {
     }
     return post
   }
+
   const updatePost = (postId: string, updatedData: PostUpdateProps) => {
     console.log(updatedData.media)
     setPosts((prev) => {
@@ -43,6 +46,10 @@ const PostsProvider = ({children}:{children: React.ReactNode}) => {
         return post 
       })
     })
+  }
+
+  const groupPosts = (groupId: string) => {
+    return posts.filter((post) => post.groupId === groupId)
   }
   
   const deletePost = (postId: string) => {
@@ -113,7 +120,8 @@ const PostsProvider = ({children}:{children: React.ReactNode}) => {
       userPosts,
       findPost,
       updatePost,
-      deletePost
+      deletePost,
+      groupPosts
       }}>
     {children}
     </postContext.Provider>

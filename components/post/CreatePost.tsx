@@ -13,7 +13,7 @@ const CreatePost = () => {
             alt="profile picture"
             className='!w-11' />
             <div className='w-full flex flex-col'>
-                <FormCreatePost />
+              <FormCreatePost />
             </div>
         </div>
     </section>
