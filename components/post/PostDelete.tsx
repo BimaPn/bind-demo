@@ -1,24 +1,18 @@
 'use client'
-import { useContext, useState } from "react"
-import { PostsContextProps } from "@/types/post"
-import { postContext } from "../providers/PostContext"
-import ApiClient from "@/app/api/axios/ApiClient"
+import { useState } from "react"
+import { usePosts } from "../providers/PostsProvider"
 
-const PostDelete = ({postId,children,className}:{postId:string | number,children:React.ReactNode,className?:string}) => {
-    const { deletePost } = useContext(postContext) as PostsContextProps
-    const [disabled,setDisabled] = useState<boolean>(false)
-    const buttonClick = (e:React.MouseEvent) => {
-        setDisabled(true)
-        e.preventDefault()
-        ApiClient.delete(`/api/post/${postId}/delete`)
-        .then(() => {
-            deletePost(postId)
-        })
-        .catch(() => setDisabled(false))
-        alert('success')
-    }
+const PostDelete = ({postId,children,className}:{postId:string,children:React.ReactNode,className?:string}) => {
+  const { deletePost } = usePosts()
+  const buttonClick = (e:React.MouseEvent) => {
+    e.preventDefault() 
+    const isDelete = confirm("Are you sure ?")
+    if(!isDelete) return
+
+    deletePost(postId)
+  }
   return (
-    <button disabled={disabled} onClick={buttonClick} className={className}>
+    <button onClick={buttonClick} className={className}>
         {children}
     </button>
   )

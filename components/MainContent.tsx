@@ -13,7 +13,7 @@ const MainContent = () => {
   },[])
   return (
     <>
-    <div className="flexCenter flex-col gap-1 sm:gap-3 mt-4">
+    <div className="flexCenter flex-col gap-0 sm:gap-3 mt-3">
        {!loaded && <PostSkeleton count={4} />}
        {loaded && (
         <PostsContent posts={posts} />

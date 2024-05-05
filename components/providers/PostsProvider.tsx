@@ -13,6 +13,7 @@ type PostContext = {
   unsaved: (postId: string|number) => void
   savedPosts: () => PostProps[]
   findPost: (postId: string) => PostProps
+  deletePost: (postId: string) => void 
   userPosts: (username: string, fullMedia?:boolean) => PostProps[]
 }
 const postContext = createContext<PostContext | null>(null)
@@ -29,6 +30,11 @@ const PostsProvider = ({children}:{children: React.ReactNode}) => {
       throw Error("Post not found.")
     }
     return post
+  }
+  const deletePost = (postId: string) => {
+    setPosts((prev) => {
+      return prev.filter((post) => post.id !== postId)
+    })
   }
   const savedPosts = () => {
     return posts.filter((post) => post.isSaved)
@@ -91,7 +97,8 @@ const PostsProvider = ({children}:{children: React.ReactNode}) => {
       addPost,
       savedPosts,
       userPosts,
-      findPost
+      findPost,
+      deletePost
       }}>
     {children}
     </postContext.Provider>

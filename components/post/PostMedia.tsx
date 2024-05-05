@@ -2,12 +2,15 @@ import { PostMediaProps } from '@/types/post'
 import Image from 'next/image'
 import VideoPlayer from '../ui/VideoPlayer'
 
-const PostMedia = ({media, playInView}:{media : string[], playInView: boolean}) => {
+const PostMedia = ({media, playInView=false}:{media : string[], playInView?: boolean}) => {
   return (
     <>
     {media.length == 1 && (
     <div className="rounded-xl overflow-hidden">
-       <ShowMedia playInView={playInView} src={media[0]} /> 
+       <ShowMedia 
+       playInView={playInView}
+       src={media[0]}
+       /> 
     </div>
     )}
     {media.length == 3 && (

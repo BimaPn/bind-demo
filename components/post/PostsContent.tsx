@@ -1,22 +1,22 @@
-'use client'
+"use client"
 import { PostProps } from "@/types/post"
 import Post from "./Post"
-import { useState } from "react"
-import PostModal from "./PostModal"
+import { useRouter } from "next-nprogress-bar"
 
-const PostsContent = ({posts} : {posts?:PostProps[]}) => {
-  const [post,setPost] = useState<PostProps | null>(null)
-  return posts ? (
+const PostsContent = ({posts} : {posts:PostProps[]}) => {
+  const router = useRouter()
+
+  const directTo = (postId: string) => {
+    router.push(`/post/${postId}`)
+  }
+  return (
     <>
-    {post != null && (
-      <PostModal
-      show={post != null ? true : false}
-      onClose={() => setPost(null)}
-      post={post}
-      />
-    )}    
       {posts.map((post) => (
-        <div className="w-full rounded-xl shadow" key={post.id} onClick={() => setPost(post)}>
+        <div 
+        key={post.id}
+        onClick={() => directTo(post.id as string)}
+        className="w-full ss:rounded-xl ss:shadow cursor-pointer"
+        >
           <Post 
           id={post.id}
           caption={post.caption}
@@ -32,8 +32,6 @@ const PostsContent = ({posts} : {posts?:PostProps[]}) => {
         </div>
       ))}
     </>
-  ) : (
-    <div>no posts</div>
   )
 }
 

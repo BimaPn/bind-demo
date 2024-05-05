@@ -1,4 +1,5 @@
 import { PiArrowLeft } from "react-icons/pi"
+import BackButton from "./BackButton"
 
 type PageHeaderProps = {
     title : string
@@ -10,12 +11,10 @@ type PageHeaderProps = {
 const PageHeader = ({title,showWideScreen=true,children,className}:PageHeaderProps) => {
   return (
     <>
-    <div className={`ss:hidden block sticky top-0 left-0 right-0 bg-light dark:bg-d_semiDark text-dark dark:text-d_light py-3 px-4 flexBetween rounded-none sm:rounded-t-xl z-[995] ${className}`}>
-        <div className="flex items-center gap-4">
-            <button>
-                < PiArrowLeft className="text-[22px]" />
-            </button>
-            <span className="text-lg font-semibold">
+    <div className={`ss:hidden block sticky top-0 left-0 right-0 bg-light border dark:bg-d_semiDark text-dark dark:text-d_light py-3 px-4 flexBetween rounded-none sm:rounded-t-xl z-[995] ${className}`}>
+        <div className="flex items-center gap-3">
+            <BackButton />
+            <span className="font-medium">
                 {title}
             </span>
         </div>
