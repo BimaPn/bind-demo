@@ -2,7 +2,7 @@
 import { BsThreeDots } from "react-icons/bs"
 import Image from "next/image"
 import GroupJoinButton from "./GroupJoinButton"
-import { useContext, useEffect, useState} from "react"
+import { useContext, useState} from "react"
 import { useGroups } from "../providers/GroupsProvider"
 import PageHeader from "../PageHeader"
 import CreatePostModal from "../post/CreatePostModal"
@@ -49,7 +49,7 @@ const GroupHeader = ({groupId}:{groupId: string}) => {
           <span className="font-medium">{group.memberTotal}</span>
           <span className="text-semiDark dark:text-d_semiLight">Members</span>
         </div>
-        <div className="flex flex-row ss:flex-row-reverse items-center gap-[6px]">
+        <div className="flex flex-row ss:flex-row-reverse items-center gap-2">
           <GroupJoinButton 
           groupId={group.id}
           isJoin={group.isJoin}
@@ -82,7 +82,7 @@ const GroupDropdown = ({group}:{group: GroupProps}) => {
   return (
     <Dropdown>  
       <Dropdown.Trigger>
-        <div className="flexCenter px-[10px] aspect-square rounded-full bg-semiLight dark:bg-d_netral text-dark dark:text-light">
+        <div className="flexCenter px-[6px] aspect-square rounded-full border border-gray-300 dark:border-d_semiLight text-dark dark:text-light">
           <BsThreeDots className="text-xl" />
         </div>
       </Dropdown.Trigger>

@@ -18,7 +18,7 @@ const GroupJoinButton = ({groupId,isJoin,className,...props}:ButtonProps &
     <>
     <button
     className={`
-    w-full py-2 rounded-full font-medium px-8
+    w-full py-2 rounded-full font-medium text-sm px-6
     ${isJoin ? 'bg-semiLight text-dark dark:text-d_light dark:bg-d_netral' : 'bg-dark text-light'} ${className}`}
     onClick={buttonClick}
     {...props}

@@ -1,16 +1,13 @@
 import { PostMediaProps } from '@/types/post'
 import Image from 'next/image'
+import VideoPlayer from '../ui/VideoPlayer'
 
-const PostMedia = ({media}:{media : string[]}) => {
+const PostMedia = ({media, playInView}:{media : string[], playInView: boolean}) => {
   return (
     <>
     {media.length == 1 && (
     <div className="rounded-xl overflow-hidden">
-        <Image src={media[0]}
-        width={700} height={700}
-        className="w-full h-auto"
-        alt="post picture"
-        />
+       <ShowMedia playInView={playInView} src={media[0]} /> 
     </div>
     )}
     {media.length == 3 && (
@@ -61,6 +58,25 @@ const PostMedia = ({media}:{media : string[]}) => {
         
     </>
 
+  )
+}
+
+const ShowMedia = ({src, playInView}:{src: string, playInView: boolean}) => {
+  const isImage = /\.(jpg|jpeg|png|gif)$/.test(src);
+  const isVideo = /\.(mp4|mov|avi)$/.test(src)
+  return (
+    <>
+    {isImage && (
+      <Image src={src}
+      width={700} height={700}
+      className="w-full h-auto"
+      alt="post picture"
+      />
+    )}
+    {isVideo && (
+      <VideoPlayer playInView={playInView} src={src} /> 
+    )}
+    </>
   )
 }
 

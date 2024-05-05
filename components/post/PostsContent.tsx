@@ -27,6 +27,7 @@ const PostsContent = ({posts} : {posts?:PostProps[]}) => {
           created_at={post.created_at}
           isLiked={post.isLiked}
           isSaved={post.isSaved}
+          playInView={true}
           />
         </div>
       ))}

@@ -60,7 +60,23 @@ export const initialPosts: PostProps[] = [
           isVerified : true
       },
       caption : `Everybody is a doctor on DRE DAY. 💉`,
-      media : ["/cristiano_post.jpg"],
+      media : ["/videos/dawkins_post.mp4"],
+      likedTotal : 443,
+      commentTotal : 0,
+      created_at : "A day ago",
+      isLiked : false,
+      isSaved : false,
+    },
+    {
+      id : '6',
+      user : {
+          name : 'Marshall Mathers',
+          username : 'eminem',
+          profile_picture : '/people/eminem.jpg',
+          isVerified : true
+      },
+      caption : `Everybody is a doctor on DRE DAY. 💉`,
+      media : ["/videos/dawkins_post.mp4"],
       likedTotal : 443,
       commentTotal : 0,
       created_at : "A day ago",

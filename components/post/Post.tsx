@@ -11,8 +11,8 @@ import PostOptionDropdown from "./PostOptionDropdown"
 import PostSave from "./PostSave"
 import { authUser } from "@/constants/user"
 
-const Post = ({id,user,caption,media,isLiked,isSaved,likedTotal,commentTotal,created_at,hover=true}
-:PostProps & {hover?:boolean}) => {
+const Post = ({id,user,caption,media,isLiked,isSaved,likedTotal,commentTotal,created_at,hover=true, playInView=false}
+:PostProps & {hover?:boolean, playInView?: boolean}) => {
   return (
     <div className={`w-full bg-light dark:bg-d_semiDark px-2 ss:px-4 pt-3 pb-[6px] sm:pt-[12px] sm:pb-[10px] rounded-none ss:rounded-xl ${hover && 'hover:bg-slate-50'}`}>
         <Header id={id} user={user} created_at={created_at} />
@@ -23,7 +23,7 @@ const Post = ({id,user,caption,media,isLiked,isSaved,likedTotal,commentTotal,cre
                 </p>
             )}
             {media?.length != 0 && (
-                <PostMedia media={media!} />
+                <PostMedia media={media!} playInView={playInView}/>
             )}
         </div>
         <Footer id={id} isLiked={isLiked} isSaved={isSaved} likedTotal={likedTotal} commentTotal={commentTotal} />
