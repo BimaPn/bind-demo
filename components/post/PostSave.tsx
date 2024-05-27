@@ -14,8 +14,8 @@ const PostSave = ({postId,isSaved}:{postId:string | number,isSaved:boolean}) => 
     }
   return (
     <button onClick={postSave}>
-        < BiSolidBookmark className={`text-[21px] ss:text-[23px] 
-        ${isSaved ? 'fill-semiDark stroke-semiDark' : 'stroke-dark dark:stroke-light fill-none'}`}
+        <BiSolidBookmark className={`text-[21px] ss:text-[23px] 
+        ${isSaved ? 'fill-blue-500 stroke-blue-500' : 'stroke-gray-600 dark:stroke-light fill-none'}`}
         strokeWidth={1.8} />
     </button>
   )

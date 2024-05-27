@@ -4,7 +4,7 @@ export const authUser : UserProfileProps = {
     name : 'Wilson Walton',
     username : 'wilson_walton',
     profile_picture : '/person.jpg',
-    cover_photo : '/banner.jpg',
+    cover_photo : '/people/bima_cover.jpg',
     bio : 'Guzzling, Fiery, Matter, Pure, Latch, Renew, Glimmer, Foundation, Crisis, Geometric, Sail, Biggest, Clear, Thundering',
     followingTotal : 23,
     followerTotal : 621,

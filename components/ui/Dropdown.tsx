@@ -1,6 +1,7 @@
 'use client'
 import {useState,useContext,createContext} from 'react'
 import { DropdownProps } from '@/types/types.dropdown'
+import { AnimatePresence, motion } from "framer-motion"
 
 export const dropDownContext = createContext<DropdownProps | null>(null)
 
@@ -28,14 +29,66 @@ const Trigger = ({children}:{children : React.ReactNode}) => {
     )
 }
 
-const Content = ({children, showFromBottom=true, className}:{children : React.ReactNode, showFromBottom?: boolean, className ?: string}) => {
+const contentVariants = {
+  initial: {
+    scaleY: 0,
+  },
+  animate: {
+    scaleY: 1,
+    transition: {
+      bounce: 0
+    }
+  },
+  exit: {
+    scaleY: 0,
+    transition: {
+      bounce: 0,
+      delay: .3
+    }
+  }
+}
+const childVariants = {
+  initial: {
+    opacity: 0,
+    transition: {
+      bounce: 0,
+      delay: .3
+    }
+  },
+  animate: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+  }
+}
+
+const Content = ({children, showFromBottom=true, closeWhenClick=true, className}:{children : React.ReactNode, showFromBottom?: boolean, closeWhenClick?:boolean, className ?: string}) => {
     const { open,setOpen } = useContext(dropDownContext) as DropdownProps
-    return open && (
-        <div
-        onClick={() => setOpen(prev => !prev)}
-        className={`absolute mt-2 ${showFromBottom && 'top-full'} z-[994] ${className}`}>
+    const toggle = () => {
+      if(!closeWhenClick) return
+      setOpen(prev => !prev)
+    }
+    return (
+    <> 
+      <AnimatePresence> 
+      {open && (
+        <motion.div
+        variants={contentVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        onClick={() => toggle()}
+        className={`absolute mt-2 ${showFromBottom && 'top-full'} z-[994] ${className} origin-top`}>
+          <motion.div variants={childVariants}>
             {children}
-        </div>
+          </motion.div>
+
+        </motion.div>
+      )}
+      </AnimatePresence>
+
+    </>
     )
 } 
 

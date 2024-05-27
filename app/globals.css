@@ -26,6 +26,10 @@ body {
   display: grid;
 }
 
+.toggle-transition {
+  transition: transform .3s ease-in-out;
+}
+
 .text-area[contenteditable]:empty::before {
   content: attr(data-content);
 }

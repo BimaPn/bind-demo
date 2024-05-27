@@ -81,7 +81,7 @@ const Header = ({id,user,caption,media,created_at}:Pick<PostProps,"user" | "crea
                         )}
                     </div>
                     <div className="leading-3">
-                        <span className="text-sm text-semiDark dark:text-d_semiLight">{created_at}</span>
+                        <span className="text-[13px] text-semiDark dark:text-d_semiLight">{created_at}</span>
                     </div>
 
                 </div>
@@ -100,11 +100,11 @@ const Header = ({id,user,caption,media,created_at}:Pick<PostProps,"user" | "crea
 
 const Footer = ({id,likedTotal,commentTotal,isLiked,isSaved}:Pick<PostProps,'id' | 'likedTotal' | 'commentTotal'> & {isLiked:boolean,isSaved:boolean}) => {
     return (
-        <div className="flexBetween text-dark dark:text-light pb-2 pt-1 ss:pb-1">
+        <div className="flexBetween text-gray-600 dark:text-light pb-2 pt-1 ss:pb-1">
             <div className="flex items-center gap-4">
                 <div className="flexCenter gap-1 ss:gap-[6px]">
                     <PostLike postId={id} isLiked={isLiked} />
-                    <span>{likedTotal != 0 ? likedTotal : ''}</span>
+                    <span className="text-sm">{likedTotal != 0 ? likedTotal : ''}</span>
                 </div>
                 <div className="flexCenter gap-[6px]">
                     <GoComment strokeWidth={.2} className="text-[22px] ss:text-[24px]" />
