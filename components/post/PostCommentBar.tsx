@@ -1,18 +1,19 @@
 'use client'
 import Image from "next/image"
-import TextArea from "../ui/TextArea"
 import { IoSend } from "react-icons/io5"
-import { useContext, useState, useEffect } from "react"
+import { useContext, useState, useEffect, useRef } from "react"
 import { postContext } from "../providers/PostContext"
-import ApiClient from "@/app/api/axios/ApiClient"
 import { PostCommentProps, PostsContextProps } from "@/types/post"
 import { useComments } from "../providers/CommentsProvider"
 import { authUser } from "@/constants/user"
+import TextAreaExpand from "../ui/TextAreaExpand"
 
 const PostCommentBar = ({postId, onFinished} : {postId : string | number, onFinished: (comment: PostCommentProps) =>void}) => {
     const [comment,setComment] = useState<string>('')
     const [disabled,setDisabled] = useState<boolean>(false)
     const { addComment } = useComments()
+    const submitButton = useRef<HTMLButtonElement>(null)
+
     useEffect(() => {
       comment.length == 0 ? setDisabled(true) : setDisabled(false)
     },[comment])
@@ -45,15 +46,16 @@ const PostCommentBar = ({postId, onFinished} : {postId : string | number, onFini
         className='w-full'
         alt='profile picture'/>
       </div>
-      <TextArea
+      <TextAreaExpand
       value={comment}
       rows={1}
       onChange={(e) => setComment(e.target.value)}
+      handleSubmit={() => submitButton.current?.click()}
       className='w-full bg-semiLight dark:bg-d_netral px-3 py-[10px] border-0 rounded-xl focus:outline-none dark:placeholder:text-d_semiLight'
       placeholder='Write a comment...'
       />
     </div>
-    <button disabled={disabled} className="disabled:opacity-40 disabled:cursor-not-allowed">
+    <button ref={submitButton} disabled={disabled} className="disabled:opacity-40 disabled:cursor-not-allowed">
         <IoSend className='text-2xl text-semiDark dark:text-light' />
     </button>
   </form>

@@ -67,24 +67,26 @@ const PostsProvider = ({children}:{children: React.ReactNode}) => {
     return posts.filter((post) => post.user.username === username)
   }
   const like = (postId: string|number) => {
-    setPosts((posts) => {
-      return posts.map((post) => {
-        if(post.id === postId) {
-          post.isLiked = true
-        }
-        return post
-      })
+    const updatedPost = posts.map((post) => {
+      if(post.id === postId) {
+        post.isLiked = true
+        post.likedTotal += 1
+      }
+      return post
     })
+    setPosts(updatedPost)
   }
   const unlike = (postId: string|number) => {
-    setPosts((posts) => {
-      return posts.map((post) => {
-        if(post.id === postId) {
-          post.isLiked = false 
+    const updatedPost = posts.map((post) => {
+      if(post.id === postId) {
+        post.isLiked = false 
+        if(post.likedTotal >= 0) {
+          post.likedTotal -= 1
         }
-        return post
-      })
+      }
+      return post
     })
+    setPosts(updatedPost)
   }
 
   const saved = (postId: string|number) => {

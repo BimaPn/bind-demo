@@ -29,18 +29,6 @@ const Navigation = ({className}:{className?:string}) => {
             />
 
             <NavItem
-            name="Explore"
-            path={`/explore`} 
-            icon={
-            <ExploreIcon
-            active={comparePath(pathname, "/explore") ? true : false}
-            width={24} 
-            />
-            } 
-            isActive={comparePath(pathname, "/explore")}
-            />
-
-            <NavItem
             name="Chat"
             path={`/chat`} 
             icon={

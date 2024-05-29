@@ -80,7 +80,7 @@ const Header = ({id,user,caption,media,created_at}:Pick<PostProps,"user" | "crea
                         < VscVerifiedFilled className='text-blue-500 text-lg' />
                         )}
                     </div>
-                    <div className="leading-3">
+                    <div className="leading-4">
                         <span className="text-[13px] text-semiDark dark:text-d_semiLight">{created_at}</span>
                     </div>
 
