@@ -26,10 +26,10 @@ const PostOptionDropdown = ({
             </div>
         </Dropdown.Trigger>
         <Dropdown.Content 
-        className="right-0 w-40 text-dark dark:text-d_light bg-light dark:bg-d_netral shadow-xl flex flex-col gap-1 max-h-64 overflow-auto rounded-lg py-2 px-1">
-            <div className="flex justify-start items-center py-1 rounded hover:bg-light dark:hover:bg-d_semiLight dark:hover:text-dark">
-                <IoWarningOutline className="w-10 text-xl" />
-                <span>Report post</span>
+        className="right-0 w-36 text-dark dark:text-d_light bg-light dark:bg-d_netral shadow-xl flex flex-col gap-1 max-h-64 overflow-auto rounded-lg py-1 px-1">
+            <div className="flex justify-start items-center rounded hover:bg-light dark:hover:bg-d_semiLight dark:hover:text-dark text-sm py-[6px]">
+                <IoWarningOutline className="w-8 text-lg" />
+                <span>Report</span>
             </div>
             {isAuthor && (
             <>                
@@ -39,15 +39,17 @@ const PostOptionDropdown = ({
             media={media}
             className="w-full"
             >
-              <div className="flex justify-start items-center py-1 rounded hover:bg-light dark:hover:bg-d_semiLight dark:hover:text-dark">
-                  <AiOutlineEdit className="w-10 text-xl" />
-                  <span>Edit post</span>
+              <div className="flex justify-start items-center rounded hover:bg-light dark:hover:bg-d_semiLight text-sm dark:hover:text-dark py-[6px]">
+                  <AiOutlineEdit className="w-8 text-xl" />
+                  <span>Edit</span>
               </div>
             </PostEdit>
 
-            <PostDelete postId={postId} className="flex justify-start items-center py-1 rounded hover:bg-light dark:hover:bg-d_semiLight dark:hover:text-dark">
-                <AiOutlineDelete className="w-10 text-xl" />
-                <span>Delete post</span>
+            <PostDelete 
+            postId={postId} 
+            className="flex justify-start items-center rounded hover:bg-light text-sm dark:hover:bg-d_semiLight dark:hover:text-dark py-[6px]">
+                <AiOutlineDelete className="w-8 text-xl" />
+                <span>Delete</span>
             </PostDelete>
             </>
             )}

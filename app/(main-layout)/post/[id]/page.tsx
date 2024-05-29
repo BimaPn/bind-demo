@@ -10,16 +10,15 @@ import { useEffect, useState } from "react"
 
 const page = ({params}:{params:{id: string}}) => {
   const { findPost  } = usePosts()
-  const { findComments } = useComments()
+  const { comments, addComment } = useComments()
   const [post, setPost] = useState(findPost(params.id))
-  const [postComments, setPostComments] = useState(findComments(params.id))
 
   useEffect(() => {
     scrollToBottom()
-  },[postComments])
+  },[comments])
 
-  const addComment = (comment: PostCommentProps) => {
-    setPostComments((prev) => [...prev, comment])
+  const add = (comment: PostCommentProps) => {
+    addComment(comment)
   }
   const scrollToBottom = () => {
     window.scrollTo({
@@ -44,7 +43,7 @@ const page = ({params}:{params:{id: string}}) => {
             isSaved={post.isSaved}
           /> 
           <div className='h-full ss:min-h-[160px] flex flex-col gap-3 px-2 ss:px-4 pb-2 ss:pb-0 mt-3'>
-            {postComments.map((comment, index) => (
+            {comments.filter(comment => comment.postId === params.id).map((comment, index) => (
               <PostComment key={index} comment={comment} />
             ))}
           </div>

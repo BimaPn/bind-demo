@@ -7,11 +7,13 @@ import { PostCommentProps, PostsContextProps } from "@/types/post"
 import { useComments } from "../providers/CommentsProvider"
 import { authUser } from "@/constants/user"
 import TextAreaExpand from "../ui/TextAreaExpand"
+import { usePosts } from "../providers/PostsProvider"
 
 const PostCommentBar = ({postId, onFinished} : {postId : string | number, onFinished: (comment: PostCommentProps) =>void}) => {
     const [comment,setComment] = useState<string>('')
     const [disabled,setDisabled] = useState<boolean>(false)
     const { addComment } = useComments()
+    const { changeCommentCount } = usePosts()
     const submitButton = useRef<HTMLButtonElement>(null)
 
     useEffect(() => {
@@ -34,6 +36,7 @@ const PostCommentBar = ({postId, onFinished} : {postId : string | number, onFini
         }
       }
       addComment(newComment) 
+      changeCommentCount(postId as string, 1)
       onFinished(newComment)
       setComment("")
     }
@@ -56,7 +59,7 @@ const PostCommentBar = ({postId, onFinished} : {postId : string | number, onFini
       />
     </div>
     <button ref={submitButton} disabled={disabled} className="disabled:opacity-40 disabled:cursor-not-allowed">
-        <IoSend className='text-2xl text-semiDark dark:text-light' />
+        <IoSend className='text-2xl text-primary dark:text-light' />
     </button>
   </form>
   )

@@ -39,17 +39,16 @@ const Post = (
       media={media}
       />
       <div className="flex flex-col gap-2 pt-2 pb-[10px]">
-          {caption && (
-              <p>
-                {caption}
-              </p>
+        {caption && (
+            <p>
+              {caption}
+            </p>
+        )}
+        <div className="-mx-1">
+          {media?.length != 0 && (
+            <PostMedia media={media!} playInView={playInView}/>
           )}
-          <div className="-mx-1">
-            {media?.length != 0 && (
-              <PostMedia media={media!} playInView={playInView}/>
-            )}
-          </div>
-
+        </div>
       </div>
       <Footer id={id} isLiked={isLiked} isSaved={isSaved} likedTotal={likedTotal} commentTotal={commentTotal} />
     </div>
@@ -62,10 +61,10 @@ const Header = ({id,user,caption,media,created_at}:Pick<PostProps,"user" | "crea
             <div className="flex items-center gap-2">
                 {user.profile_picture && (
                     <Link href={`/user/${user.username}`} onClick={(e) => e.stopPropagation()}>
-                        < RoundedImage
-                        src={user.profile_picture}
-                        className="!w-11"
-                        alt="profile picture" />    
+                      <RoundedImage
+                      src={user.profile_picture}
+                      className="!w-11"
+                      alt="profile picture" />    
                     </Link>
                 )}
                 <div className="flex flex-col text-dark gap-[2px]">
@@ -73,7 +72,7 @@ const Header = ({id,user,caption,media,created_at}:Pick<PostProps,"user" | "crea
                     <div className="leading-4 flex items-center gap-1">
                         <Link href={`/${user.username}`} onClick={(e) => e.stopPropagation()}>
                             <span className="font-medium text-dark dark:text-d_light hover:underline">
-                                {user.name}
+                              {user.name}
                             </span>
                         </Link>
                         {user.isVerified && (

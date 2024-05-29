@@ -43,7 +43,7 @@ const contentVariants = {
     scaleY: 0,
     transition: {
       bounce: 0,
-      delay: .3
+      delay: .2
     }
   }
 }
@@ -52,7 +52,7 @@ const childVariants = {
     opacity: 0,
     transition: {
       bounce: 0,
-      delay: .3
+      delay: .2
     }
   },
   animate: {
@@ -79,7 +79,7 @@ const Content = ({children, showFromBottom=true, closeWhenClick=true, className}
         animate="animate"
         exit="exit"
         onClick={() => toggle()}
-        className={`absolute mt-2 ${showFromBottom && 'top-full'} z-[994] ${className} origin-top`}>
+        className={`absolute mt-2 ${showFromBottom && 'top-full'} z-[994] ${className} origin-top shadow`}>
           <motion.div variants={childVariants}>
             {children}
           </motion.div>

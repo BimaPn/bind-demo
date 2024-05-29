@@ -6,10 +6,13 @@ import { PostCommentProps } from "@/types/post"
 import RoundedImage from "../ui/RoundedImage"
 import CommentLike from "./CommentLike"
 import { TbDotsVertical } from "react-icons/tb"
+import Dropdown from "../ui/Dropdown"
+import CommentOption from "../CommentOption"
+import { authUser } from "@/constants/user"
 
 const PostComment = ({comment} : {comment: PostCommentProps}) => {
   return (
-    <div className="flex justify-between gap-3">
+    <div className="flex justify-between gap-3 group">
       <div className="flex gap-3">
         <RoundedImage src={comment.user.profile_picture} alt="profile_picture" />
         <div className="w-full flex flex-col gap-[2px] text-dark dark:text-d_light">
@@ -21,7 +24,7 @@ const PostComment = ({comment} : {comment: PostCommentProps}) => {
                 <VscVerifiedFilled className='text-blue-500 text-lg' />
                 )}
                 <span className="text-semiDark dark:text-d_semiLight">
-                · <span className="text-sm">{comment.created_at}</span>
+                · <span className="text-xs">{comment.created_at}</span>
                 </span>
             </div>
             <p>
@@ -36,8 +39,12 @@ const PostComment = ({comment} : {comment: PostCommentProps}) => {
             </div>
         </div>
       </div>  
-      <div>
-        <TbDotsVertical className="text-lg text-gray-600 dark:text-d_semiLight" />
+      <div className="block sm:hidden group-hover:block">
+        <CommentOption
+        isAuthor={comment.user.username === authUser.username} 
+        postId={comment.postId as string}
+        commentId={comment.id}
+        />
       </div>
     </div>
   )

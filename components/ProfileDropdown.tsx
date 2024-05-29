@@ -91,7 +91,7 @@ const MainMenu = ({user, changeMenu}:{user:UserProfileProps, changeMenu: (menu:"
           </div>
           <span className="font-medium">Appearance</span>
         </div>
-        <div className=" group-hover:flex items-center justify-center hidden mr-4">
+        <div className=" group-hover:flex items-center justify-center hidden mr-2">
           <HiArrowRight className="text-lg" />
         </div>
       </button>

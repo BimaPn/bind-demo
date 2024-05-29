@@ -1,5 +1,4 @@
 "use client"
-
 import { initialPosts } from "@/constants/posts"
 import { PostProps, PostUpdateProps } from "@/types/post"
 import { createContext, useContext, useState } from "react"
@@ -17,6 +16,7 @@ type PostContext = {
   deletePost: (postId: string) => void 
   userPosts: (username: string, fullMedia?:boolean) => PostProps[]
   groupPosts: (groupId: string) => PostProps[] 
+  changeCommentCount: (postId: string, addition: number) => void
 }
 const postContext = createContext<PostContext | null>(null)
 
@@ -110,6 +110,15 @@ const PostsProvider = ({children}:{children: React.ReactNode}) => {
       })
     })
   }
+  const changeCommentCount = (postId: string, addition: number) => {
+    const updatedPosts = posts.map((post) => {
+      if(post.id === postId) {
+        post.commentTotal += addition
+      }
+      return post
+    })
+    setPosts(updatedPosts)
+  }
   return (
     <postContext.Provider value={{ 
       posts,
@@ -123,7 +132,8 @@ const PostsProvider = ({children}:{children: React.ReactNode}) => {
       findPost,
       updatePost,
       deletePost,
-      groupPosts
+      groupPosts,
+      changeCommentCount
       }}>
     {children}
     </postContext.Provider>

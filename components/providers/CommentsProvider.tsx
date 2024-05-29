@@ -9,6 +9,7 @@ type CommentsContext = {
   like: (commentId: string) => void
   unlike: (commentId: string) => void
   addComment: (comment: PostCommentProps) => void
+  deleteComment: (commentId: string) => void
 }
 const commentsContext = createContext<CommentsContext | null>(null)
 
@@ -39,10 +40,16 @@ export const CommentsProvider = ({children}:{children: React.ReactNode}) => {
       })
   }
   const addComment = (comment: PostCommentProps) => {
-    setComments((prev) => [...prev, comment])
+    const updatedComments = [...comments, comment]
+    setComments(updatedComments)
+  }
+  const deleteComment = (commentId: string) => {
+    setComments((prev) => {
+      return [...prev.filter((comment) => comment.id !== commentId)]
+    })
   }
   return (
-    <commentsContext.Provider value={{ comments, findComments, like, unlike, addComment }}>
+    <commentsContext.Provider value={{ comments, findComments, like, unlike, addComment, deleteComment }}>
     {children}
     </commentsContext.Provider>
   )
