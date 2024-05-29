@@ -5,7 +5,6 @@ import { BsEmojiSmile } from "react-icons/bs"
 import { useEffect, useRef, useState } from "react"
 import RoundedImage from "../ui/RoundedImage"
 import Link from "next/link"
-import TextArea from "../ui/TextArea"
 import PickEmoji from "../PickEmoji"
 import BackButton from "../BackButton"
 import MessageItem from "./MessageItem"
@@ -14,6 +13,7 @@ import { authUser } from "@/constants/user"
 import { useChatList } from "../providers/ChatListProvider"
 import { useChatCount } from "../providers/ChatCountProvider"
 import { compareDate, formatDate } from "@/helpers/time"
+import TextAreaExpand from "../ui/TextAreaExpand"
 
 const ChatSection = ({username, userTarget}:{username: string,userTarget: UserChat}) => {
   const { getUsersMessages } = useMessages()
@@ -96,9 +96,6 @@ const Header = ({userTarget}:{userTarget: UserChat}) => {
           <span className="w-full line-clamp-1">{userTarget.name}</span>
         </Link>
       </div>
-      <div className="w-9 aspect-square flexCenter rounded-full bg-semiLight dark:bg-d_netral">
-        <HiOutlineDotsHorizontal className="text-xl" />
-      </div>
     </div>
   )
 }
@@ -107,6 +104,7 @@ const Footer = ({onSendMessage,targetUsername}:{onSendMessage: (message: Message
   const [message, setMessage] = useState<string>("")
   const [disabled, setDisabled] = useState<boolean>(false) 
   const { addMessage } = useMessages()
+  const submitRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
   setDisabled(message.length <= 0)
@@ -127,10 +125,11 @@ const Footer = ({onSendMessage,targetUsername}:{onSendMessage: (message: Message
   return (
     <form onSubmit={onSend} className="flexBetween gap-1 py-2 px-1 sm:px-3">
       <div className='w-full border dark:border-d_netral flexCenter gap-2 rounded-2xl pr-3 pl-4'>
-       <TextArea
+       <TextAreaExpand
         value={message}
         rows={1}
         onChange={(e) => setMessage(e.target.value)}
+        handleSubmit={() => submitRef.current?.click()}
         className='w-full bg-transparent border-0 py-2'
         placeholder='Type something ...'
         />
@@ -138,11 +137,11 @@ const Footer = ({onSendMessage,targetUsername}:{onSendMessage: (message: Message
         <PickEmoji onEmojiClick={(emoji) => setMessage(prev => prev + emoji)}
         emojiContainerClassName="bottom-8 -right-16 xs:right-0"
         >
-          <BsEmojiSmile className="text-[22px] text-blue-400 hover:text-blue-300 cursor-pointer" />
+          <BsEmojiSmile className="text-[22px] text-blue-400 hover:text-blue-300 cursor-pointer -mb-1" />
         </PickEmoji>
         </div>
       </div>
-      <button disabled={disabled} type="submit" className="text-blue-500 hover:text-blue-400 disabled:text-blue-400 disabled:cursor-not-allowed px-2">
+      <button ref={submitRef} disabled={disabled} type="submit" className="text-blue-500 hover:text-blue-400 disabled:text-blue-400 disabled:cursor-not-allowed px-2">
         <IoSend className="text-2xl cursor-pointer" />
       </button>
     </form>

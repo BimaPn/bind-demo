@@ -69,12 +69,12 @@ const Navigation = ({className}:{className?:string}) => {
             <NavItem
             name="Profile"
             path={`/user/${user.username}`} 
-            className="sm:hidden"
+            className="sm:hidden -mb-[1px]"
             icon={
               <RoundedImage
               src={user.profile_picture}
               alt="profile picture"
-              className="min-w-[30px] w-[30px]" 
+              className="min-w-[28px] w-[28px] sm:min-w-[29px] sm:w-[29px]" 
               /> 
             } 
             isActive={comparePath(pathname, `/user/${user.username}`)}

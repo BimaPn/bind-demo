@@ -19,13 +19,14 @@ const Navbar = ({className}:{className?:string}) => {
                 <Search className='w-[70%] xl:w-[70%]' />
             </div>
             {/* props */}
-            <div className='flex items-center justify-end gap-3'>
-                <div className='ss:block hidden'>
+              <div className='flex items-center justify-end gap-2 ss:gap-3'>
+                <CreatePostModal className='block ss:hidden'>
+                  <IoIosAddCircleOutline className='text-[30px] text-dark dark:text-light' />
+                </CreatePostModal>
+                <div>
                   <NotificationDropdown />
                 </div>
-                <CreatePostModal className='block ss:hidden'>
-                  <IoIosAddCircleOutline className='text-[28px] text-dark dark:text-light' />
-                </CreatePostModal>
+
                 <ProfileDropdown
                 className='w-fit sm:w-44'
                 />
