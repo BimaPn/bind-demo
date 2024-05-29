@@ -55,7 +55,7 @@ const FormCreateGroup = () => {
             <input 
             value={formData.name}
             onChange={(e) => setFormData((prev) => ({...prev,name : e.target.value}))}
-            className="w-full border pl-2 py-2 rounded-xl focus:outline-none"
+            className="w-full border dark:border-gray-600 pl-2 py-2 rounded-xl focus:outline-none bg-transparent"
             type="text"
             placeholder="Name" 
             />
@@ -66,13 +66,13 @@ const FormCreateGroup = () => {
           value={formData.description}
           onChange={(e) => setFormData((prev) => ({...prev,description : e.target.value}))}
           placeholder="Description"
-          className='min-h-[36px] pl-2 rounded-xl' 
+          className='min-h-[36px] pl-2 rounded-xl bg-transparent dark:!border-gray-600' 
           />
         </div>
-        <div className="flex items-center justify-end px-4 h-16 bg-white">
+        <div className="flex items-center justify-end px-4 h-16 bg-white dark:bg-d_semiDark">
             <button 
             disabled={isDisableBtn} 
-            className="px-6 py-2 bg-dark text-light font-medium text-sm rounded-full disabled:opacity-40 disabled:cursor-not-allowed">
+            className="px-6 py-2 bg-dark dark:bg-white dark:text-black text-light font-medium text-sm rounded-full disabled:opacity-40 disabled:cursor-not-allowed">
                 Create
             </button>
         </div>

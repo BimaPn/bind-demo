@@ -2,14 +2,22 @@
 import { ButtonProps } from "@/types/types"
 import { useState } from 'react'
 import { useGroups } from "../providers/GroupsProvider"
+import useConfirm from "../ui/Confirm"
 
 const GroupJoinButton = ({groupId,isJoin,className,...props}:ButtonProps &
   {groupId : string,isJoin : boolean}) => {
   const { join, leave } = useGroups()
-  const buttonClick = (e:React.MouseEvent<HTMLElement>) => {
+  const [ConfirmDialog, confirm] = useConfirm({
+    label: "Are you sure you want to quit this group ?"
+  })
+
+  const buttonClick = async (e:React.MouseEvent<HTMLElement>) => {
     e.preventDefault()
     if(isJoin) {
-      leave(groupId)
+      const isTrue = await confirm()
+      if(isTrue) {
+        leave(groupId)
+      }
     }else {
       join(groupId)
     }
@@ -17,9 +25,8 @@ const GroupJoinButton = ({groupId,isJoin,className,...props}:ButtonProps &
   return (
     <>
     <button
-    className={`
-    w-full py-2 rounded-full font-medium text-sm px-6
-    ${isJoin ? 'bg-semiLight text-dark dark:text-d_light dark:bg-d_netral' : 'bg-dark text-light'} ${className}`}
+    className={`w-full font-medium text-sm rounded-full py-[6px] 
+    ${!isJoin ? "dark:bg-d_netral bg-semiLight " : "border border-gray-300 dark:border-d_netral"} ${className}`}
     onClick={buttonClick}
     {...props}
     >
@@ -27,6 +34,7 @@ const GroupJoinButton = ({groupId,isJoin,className,...props}:ButtonProps &
         {isJoin ? 'Joined' : 'Join'}
       </span>
     </button>
+    <ConfirmDialog />
     </>
   )
 }

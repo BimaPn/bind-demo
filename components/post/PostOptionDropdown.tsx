@@ -44,13 +44,6 @@ const PostOptionDropdown = ({
                   <span>Edit</span>
               </div>
             </PostEdit>
-
-            <PostDelete 
-            postId={postId} 
-            className="flex justify-start items-center rounded hover:bg-light text-sm dark:hover:bg-d_semiLight dark:hover:text-dark py-[6px]">
-                <AiOutlineDelete className="w-8 text-xl" />
-                <span>Delete</span>
-            </PostDelete>
             </>
             )}
 

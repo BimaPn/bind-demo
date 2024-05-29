@@ -2,6 +2,7 @@
 import { PostProps } from "@/types/post"
 import Post from "./Post"
 import { useRouter } from "next-nprogress-bar"
+import { BsEmojiNeutralFill } from "react-icons/bs"
 
 const PostsContent = ({posts} : {posts:PostProps[]}) => {
   const router = useRouter()
@@ -11,6 +12,12 @@ const PostsContent = ({posts} : {posts:PostProps[]}) => {
   }
   return (
     <>
+      {posts.length <= 0 && (
+        <div className="flexCenter flex-col gap-2 text-netral dark:text-d_semiLight py-6">
+          <BsEmojiNeutralFill className="text-[56px]" />
+          <span className="font-medium">There is no post yet.</span>
+        </div>
+      )}
       {posts.map((post) => (
         <div 
         key={post.id}

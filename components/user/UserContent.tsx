@@ -18,7 +18,6 @@ const UserContent = ({username} : {username : string}) => {
     <>
     <div className="flexCenter flex-col gap-1 sm:gap-3 mt-2 ss:mt-4">
     {!loaded && < PostSkeleton count={2} />}
-
     {loaded && (
       <PostsContent
       posts={userPosts(username)} />
