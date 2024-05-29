@@ -106,17 +106,4 @@ export const initialUsers = [
     postTotal : 10,
     joinedAt : '32 July 2021',
   },
-  {
-    name : "Olivia Camila",
-    username : "oliviacamila",
-    profile_picture : '/people/person4.jpg',
-    cover_photo : '/images/group/default.jpg',
-    bio : 'Guzzling, Fiery, Matter, Pure, Latch, Renew, Glimmer, Foundation, Crisis, Geometric, Sail, Biggest, Clear, Thundering',
-    followingTotal : 23,
-    followerTotal : 621,
-    isFollow : false,
-    isVerified : false,
-    postTotal : 10,
-    joinedAt : '32 July 2021',
-  },
 ]

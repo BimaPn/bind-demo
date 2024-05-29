@@ -10,12 +10,31 @@ import FollowUserBtn from "./FollowUserBtn"
 import { useUsers } from "../providers/UsersProvider"
 import { authUser } from "@/constants/user"
 import FollowUser from "./FollowUser"
+import { formatNumber } from "@/constants/number"
+import { useAuth } from "../providers/AuthProvider"
 
 const UserHeader = ({user}:{user:UserProfileProps}) => {
   return (
     <> 
-    {user && (
-    <div className="bg-light dark:bg-d_semiDark ss:rounded-t-xl h-fit ss:overflow-hidden border border-transparent">        
+    {user.username === authUser.username && (
+      <AuthUser />
+     )}
+    {user.username !== authUser.username && (
+      <Content user={user} />
+     )}
+    </>
+  )
+}
+
+const AuthUser = () => {
+  const { user } = useAuth()
+  return (
+  <Content user={user} />
+  )
+}
+const Content = ({user}:{user:UserProfileProps}) => {
+  return ( 
+ <div className="bg-light dark:bg-d_semiDark ss:rounded-t-xl h-fit ss:overflow-hidden border border-transparent">        
         <div className="relative h-fit">
             <div className="relative w-full aspect-[3/1] overflow-hidden">
                 <Image src={user.cover_photo}
@@ -47,12 +66,12 @@ const UserHeader = ({user}:{user:UserProfileProps}) => {
             <div className="mb-3 flex ss:items-center flex-col ss:flex-row ss:justify-between gap-2">
                 <div className="flex items-center gap-2">
                     <div className="flex items-center gap-1">
-                        <span className="font-bold">{user.followingTotal}</span>
+                        <span className="font-bold">{formatNumber(user.followingTotal)}</span>
                         <span className="text-sm text-gray-600 dark:text-d_semiLight">Followings</span>
                     </div>
                     ·
                     <div className="flex items-center gap-1">
-                        <span className="font-semibold">{user.followerTotal}</span>
+                        <span className="font-semibold">{formatNumber(user.followerTotal)}</span>
                         <span className="text-sm text-gray-600 dark:text-d_semiLight">Followers</span>
                     </div>
                     ·
@@ -85,8 +104,7 @@ const UserHeader = ({user}:{user:UserProfileProps}) => {
             </div>
         </div>
     </div>
-    )}
-    </>
+
   )
 }
 

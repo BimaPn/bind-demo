@@ -20,6 +20,7 @@ export type UserProfileContextProps = {
 type AuthContext = {
     user: UserProfileProps,
     setUser : Dispatch<SetStateAction<UserProfileProps>>,
+    updateUser: (data:any) => void
 }
 
 export type UpdateProfileProps = {

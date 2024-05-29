@@ -7,9 +7,17 @@ export const authContext = createContext<AuthContext | null>(null)
 
 const AuthProvider = ({children}:{children : React.ReactNode}) => {
   const [user,setUser] = useState<UserProfileProps>(authUser)
+
+  const updateUser = (data:any) => {
+    const updatedUser = {
+      ...user,
+      ...data
+    }
+    setUser(updatedUser)
+  }
   return (
     <authContext.Provider 
-    value={{user,setUser}}>
+    value={{user,setUser, updateUser}}>
         {children}
     </authContext.Provider>
   )

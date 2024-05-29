@@ -2,6 +2,7 @@
 import { useState } from "react"
 import Modal from "../ui/Modal"
 import { UserProfileProps } from "@/types/user"
+import FormUpdateUser from "./FormUpdateUser"
 
 const EditProfile = ({username,profile_picture,cover_photo,name,bio,className}:
     Pick<UserProfileProps,'username'|'profile_picture'|'cover_photo'|'name'|'bio'>&{className?:string}) => {
@@ -10,7 +11,7 @@ const EditProfile = ({username,profile_picture,cover_photo,name,bio,className}:
     <>
         <button 
         onClick={() => setIsOpenModal(prev => !prev)} 
-        className={`bg-semiLight dark:bg-d_netral text-dark dark:text-light font-medium px-5 py-2 rounded-full ${className}`}>
+        className={`bg-semiLight text-sm dark:bg-d_netral text-dark dark:text-light font-medium px-5 py-2 rounded-full ${className}`}>
             Edit Profile
         </button>
 
@@ -20,7 +21,15 @@ const EditProfile = ({username,profile_picture,cover_photo,name,bio,className}:
         onClose={() => setIsOpenModal(false)}
         className="h-screen sm:!h-fit">
           <Modal.Body className="ss:rounded-b-xl rounded-none">
-            <p>hai</p> 
+          <Modal.Body className="ss:rounded-b-xl rounded-none">
+            < FormUpdateUser 
+            username={username}
+            defaultName={name}
+            defaultBio={bio}
+            defaultProfilePic={profile_picture}
+            defaultCover={cover_photo}
+            onClose={() => setIsOpenModal(false)} />
+          </Modal.Body>
         </Modal.Body>
         </Modal>
     </>
@@ -29,12 +38,4 @@ const EditProfile = ({username,profile_picture,cover_photo,name,bio,className}:
 
 export default EditProfile
 
-          // <Modal.Body className="ss:rounded-b-xl rounded-none">
-          //   < FormUpdateUser
-          //   username={username}
-          //   defaultName={name}
-          //   defaultBio={bio}
-          //   defaultProfilePic={profile_picture}
-          //   defaultCover={cover_photo}
-          //   onClose={() => setIsOpenModal(false)} />
-          // </Modal.Body>
+

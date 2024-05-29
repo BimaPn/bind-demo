@@ -10,29 +10,12 @@ export const initialPosts: PostProps[] = [
           profile_picture  : "/people/cristiano_ronaldo.jpg",
           isVerified : true
       },
-      caption : `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                 Rerum error ullam vero, deserunt in cumque.`,
+      caption : `Prepare for the next game.`,
       media : ["/cristiano_post.jpg"],
-      likedTotal : 443,
+      likedTotal : 540000,
       commentTotal : 0,
       created_at : "A day ago",
       isLiked : true,
-      isSaved : false,
-    },
-    {
-      id : '3',
-      user : {
-          name : "Richard Dawkins",
-          username : 'richard_dawkins',
-          profile_picture : '/people/dawkins.jpg',
-          isVerified : true
-      },
-      caption : `A Practical Demonstration of the time scale of life itself compared to the time scale of recorded history.`,
-      media : ["/cristiano_post.jpg"],
-      likedTotal : 443,
-      commentTotal : 0,
-      created_at : "A day ago",
-      isLiked : false,
       isSaved : false,
     },
     {
@@ -44,8 +27,24 @@ export const initialPosts: PostProps[] = [
           isVerified : true
       },
       caption : `"We've come a long way since the bite fight"`,
-      media : ["/cristiano_post.jpg"],
-      likedTotal : 443,
+      media : ["/post/tyson_post.jpg"],
+      likedTotal : 45000,
+      commentTotal : 0,
+      created_at : "A day ago",
+      isLiked : false,
+      isSaved : false,
+    },
+    {
+      id : '3',
+      user : {
+          name : "Richard Dawkins",
+          username : 'richard_dawkins',
+          profile_picture : '/people/dawkins.jpg',
+          isVerified : true
+      },
+      caption : `A Practical Demonstration of the time scale of life itself compared to the time scale of recorded history.`,
+      media : ["/videos/dawkins_post.mp4"],
+      likedTotal : 14000,
       commentTotal : 0,
       created_at : "A day ago",
       isLiked : false,
@@ -60,24 +59,24 @@ export const initialPosts: PostProps[] = [
           isVerified : true
       },
       caption : `Everybody is a doctor on DRE DAY. 💉`,
-      media : ["/videos/dawkins_post.mp4"],
-      likedTotal : 443,
+      media : ["/post/eminem_post.jpg"],
+      likedTotal : 212000,
       commentTotal : 0,
       created_at : "A day ago",
       isLiked : false,
       isSaved : false,
     },
     {
-      id : '6',
+      id : '11',
       user : {
-          name : 'Marshall Mathers',
-          username : 'eminem',
-          profile_picture : '/people/eminem.jpg',
-          isVerified : true
+        name : 'Caroline Konstnar',
+        username : 'caroline_konstnar',
+        profile_picture : '/people/caroline.webp',
+        isVerified : true
       },
-      caption : `Everybody is a doctor on DRE DAY. 💉`,
-      media : ["/videos/dawkins_post.mp4"],
-      likedTotal : 443,
+      caption : `A tutorial.`,
+      media : ["/videos/caroline_post.mp4"],
+      likedTotal : 7600,
       commentTotal : 0,
       created_at : "A day ago",
       isLiked : false,

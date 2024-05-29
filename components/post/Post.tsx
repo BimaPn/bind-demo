@@ -10,6 +10,7 @@ import PostMedia from "./PostMedia"
 import PostOptionDropdown from "./PostOptionDropdown"
 import PostSave from "./PostSave"
 import { authUser } from "@/constants/user"
+import { formatNumber } from "@/constants/number"
 
 const Post = (
 {
@@ -68,7 +69,6 @@ const Header = ({id,user,caption,media,created_at}:Pick<PostProps,"user" | "crea
                     </Link>
                 )}
                 <div className="flex flex-col text-dark gap-[2px]">
-
                     <div className="leading-4 flex items-center gap-1">
                         <Link href={`/${user.username}`} onClick={(e) => e.stopPropagation()}>
                             <span className="font-medium text-dark dark:text-d_light hover:underline">
@@ -103,11 +103,11 @@ const Footer = ({id,likedTotal,commentTotal,isLiked,isSaved}:Pick<PostProps,'id'
             <div className="flex items-center gap-4">
                 <div className="flexCenter gap-1 ss:gap-[6px]">
                     <PostLike postId={id} isLiked={isLiked} />
-                    <span className="text-sm">{likedTotal != 0 ? likedTotal : ''}</span>
+                    <span className="text-sm">{likedTotal != 0 ? formatNumber(likedTotal) : ''}</span>
                 </div>
                 <div className="flexCenter gap-[6px]">
                     <GoComment strokeWidth={.2} className="text-[22px] ss:text-[24px]" />
-                    <span>{commentTotal != 0 ? commentTotal : ''}</span>
+                    <span>{commentTotal != 0 ? formatNumber(commentTotal) : ''}</span>
                 </div>
                 <PiShareFatLight strokeWidth={5} className="text-[23px] ss:text-[25px]" />
             </div>
