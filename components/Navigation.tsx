@@ -9,6 +9,7 @@ import ChatIcon from "./icons/ChatIcon"
 import GroupIcon from "./icons/GroupIcon"
 import UserIcon from "./icons/UserIcon"
 import { useAuth } from "./providers/AuthProvider"
+import RoundedImage from "./ui/RoundedImage"
 
 const Navigation = ({className}:{className?:string}) => {
   const { user } = useAuth()
@@ -55,7 +56,6 @@ const Navigation = ({className}:{className?:string}) => {
             <NavItem
             name="Saved"
             path={`/saved`} 
-            className="!hidden ss:!flex"
             icon={
             <BiSolidBookmark 
             className={`stroke-dark dark:stroke-light 
@@ -69,13 +69,13 @@ const Navigation = ({className}:{className?:string}) => {
             <NavItem
             name="Profile"
             path={`/user/${user.username}`} 
-            className="ss:hidden"
+            className="sm:hidden"
             icon={
-              <UserIcon
-              active={comparePath(pathname, `/user/${user.username}`)} 
-              width={16.5}
-              className={`stroke-dark fill-none`}
-              />
+              <RoundedImage
+              src={user.profile_picture}
+              alt="profile picture"
+              className="min-w-[30px] w-[30px]" 
+              /> 
             } 
             isActive={comparePath(pathname, `/user/${user.username}`)}
             />
@@ -88,7 +88,7 @@ const NavItem = ({isActive, path, name, icon, className}:{isActive: boolean, pat
   return (
     <Link
     href={path}
-    className={`sm:w-full flex items-center gap-2 py-2 px-2 
+    className={`sm:w-full flex items-center gap-2 py-[6px] ss:py-2 px-2 
     hover:bg-semiLight dark:hover:bg-d_netral rounded-lg cursor-pointer 
     ${isActive && 'font-medium'} ${className}`}
     >

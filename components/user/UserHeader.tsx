@@ -74,14 +74,13 @@ const UserHeader = ({user}:{user:UserProfileProps}) => {
                     (
                         <>
                         <FollowUser username={user.username} /> 
-                        <Link href={`/chat/${user.username}`} className="text-sm flexCenter font-medium border border-gray-300 dark:border-d_semiLight px-6 py-[6px] rounded-full">
+                        <Link 
+                        href={`/chat/${user.username}`}
+                        className="text-sm flexCenter font-medium border border-gray-300 dark:border-d_semiLight px-6 py-[7px] rounded-full">
                           <span className="block -mt-[1px]">Chat</span>
                         </Link>     
                         </>
                     )}
-                    <button className="flexCenter border border-gray-300 dark:border-d_semiLight text-dark dark:text-light px-[7px] aspect-square rounded-full">
-                        <BsThreeDots className="text-lg" />
-                    </button>
                 </div>
             </div>
         </div>

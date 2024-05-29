@@ -13,13 +13,14 @@ import { useState } from "react"
 import { UserProfileProps } from "@/types/user"
 import { AnimatePresence, motion } from "framer-motion"
 import { HiArrowRight } from "react-icons/hi2"
+import { CgMenuRight } from "react-icons/cg"
 
 const ProfileDropdown = ({className} : {className ?: string}) => {
   const { user } = useAuth()
   return  (
     <Dropdown>
       <Dropdown.Trigger>
-        <div className={`flexBetween gap-3 hover:bg-semiLight dark:hover:bg-d_netral dark:text-d_light ${className} sm:px-2 rounded-lg cursor-pointer sm:py-1`}>
+        <div className={`hidden sm:flex items-center justify-center gap-3 hover:bg-semiLight dark:hover:bg-d_netral dark:text-d_light ${className} sm:px-2 rounded-lg cursor-pointer sm:py-1`}>
           <div className="flex items-center gap-2 max-w-[85%]">
             <RoundedImage
             src={user.profile_picture}
@@ -29,9 +30,10 @@ const ProfileDropdown = ({className} : {className ?: string}) => {
           </div>
           <MdArrowForwardIos className="text-sm rotate-90 hidden sm:block" />
         </div>
+        <CgMenuRight className='text-[26px] text-dark dark:text-light block sm:hidden -mb-1' />
       </Dropdown.Trigger>
 
-      <Dropdown.Content closeWhenClick={false} className="right-0 w-72 h-[170px] bg-light dark:bg-d_semiDark shadow rounded-lg py-2 px-3 overflow-hidden">
+      <Dropdown.Content closeWhenClick={false} className="right-0 w-56 ss:w-72 h-[113px] ss:h-[170px] bg-light dark:bg-d_semiDark shadow rounded-lg py-1 ss:py-2 px-1 ss:px-3 overflow-hidden">
         <DropdownContent user={user} />
       </Dropdown.Content>
     </Dropdown>
@@ -46,9 +48,6 @@ const DropdownContent = ({user}:{user:UserProfileProps}) => {
         {menu === "main" && <MainMenu key={"mainMenu"} changeMenu={(menu) => setMenu(menu)} user={user} />}
         {menu === "appearance" && <AppearanceMenu key={"AppearanceMenu"} onBack={() => setMenu("main")} />}
       </AnimatePresence>
-
-
-
     </>
   )
 }
@@ -75,7 +74,12 @@ const MainMenu = ({user, changeMenu}:{user:UserProfileProps, changeMenu: (menu:"
   const { toggleOpen } = useDropdown()
   return (
     <motion.div variants={mainMenuVariants} initial="initial" animate="animate" exit="exit" className="w-full flex flex-col">
-      <Link onClick={toggleOpen} href={`/${user.username}`} className="hover:bg-semiLight dark:hover:bg-d_netral flex items-center gap-3 py-2 px-1 rounded-xl hover:text-dark text-gray-700 dark:text-d_light">
+      <Link
+      onClick={toggleOpen}
+      href={`/user/${user.username}`} 
+      className="hidden hover:bg-semiLight dark:hover:bg-d_netral ss:flex items-center gap-3 py-2 px-1 
+      rounded-xl hover:text-dark text-gray-700 dark:text-d_light"
+      >
         <RoundedImage
         src={user.profile_picture}
         className="w-9"
@@ -91,7 +95,7 @@ const MainMenu = ({user, changeMenu}:{user:UserProfileProps, changeMenu: (menu:"
           </div>
           <span className="font-medium">Appearance</span>
         </div>
-        <div className=" group-hover:flex items-center justify-center hidden mr-2">
+        <div className="group-hover:flex items-center justify-center flex ss:hidden mr-2">
           <HiArrowRight className="text-lg" />
         </div>
       </button>

@@ -23,15 +23,12 @@ const Navbar = ({className}:{className?:string}) => {
                 <div className='ss:block hidden'>
                   <NotificationDropdown />
                 </div>
-                <div className='hidden ss:block'>
-                    <ProfileDropdown
-                    className='w-fit sm:w-44'
-                    />
-                </div>
                 <CreatePostModal className='block ss:hidden'>
-                    <IoIosAddCircleOutline className='text-3xl text-dark dark:text-light' />
+                  <IoIosAddCircleOutline className='text-[28px] text-dark dark:text-light' />
                 </CreatePostModal>
-                <CgMenuRight className='text-[26px] text-dark dark:text-light block ss:hidden' />
+                <ProfileDropdown
+                className='w-fit sm:w-44'
+                />
             </div>
         </div>
     </nav>

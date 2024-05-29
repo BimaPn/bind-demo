@@ -7,15 +7,17 @@ import RoundedImage from "./ui/RoundedImage"
 import FollowUserBtn from "./user/FollowUserBtn"
 import { useUsers } from "./providers/UsersProvider"
 
+const suggestions = ["bimapn","fabian","cristiano","eminem","mike_tyson"]
+
 const SuggestionUsers = () => {
   const { users } = useUsers()
   return (
-    <div className="bg-light dark:bg-d_semiDark text-dark dark:text-light rounded-xl sm:shadow px-4 py-4 !pt-2">
+    <div className="bg-light dark:bg-d_semiDark text-dark dark:text-light rounded-xl sm:shadow px-3 pb-1 pt-3">
       <div className="flexBetween">
         <h4 className="font-medium">Suggestion for you</h4>
       </div>
         <ul className="flex flex-col gap-[18px] mt-4 mb-4">
-          {users.map((user, index) => (
+          {users.filter(user => suggestions.includes(user.username)).map((user, index) => (
             <UserItem 
             key={index}
             name={user.name}
@@ -26,12 +28,6 @@ const SuggestionUsers = () => {
             />
             ))}
         </ul>
-        <Link 
-        href={`users/discover`} 
-        className="text-blue-600 dark:text-blue-500 text-sm">
-        Show more 
-        </Link> 
-
     </div>
   )
 }

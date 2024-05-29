@@ -30,9 +30,6 @@ const GroupsDiscover = ({className}:{className ?: string}) => {
             </Link>
           ))}
         </div>
-      <Link href={`/groups/discover`} className="text-blue-600 font-medium ss:-mt-1 text-sm">
-        Show more 
-      </Link>
     </div>
   )
 }

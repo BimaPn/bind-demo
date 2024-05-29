@@ -2,7 +2,6 @@
 import { HiOutlineDotsHorizontal } from "react-icons/hi"
 import { useContext, useEffect } from "react"
 import { DropdownProps } from "@/types/types.dropdown"
-import ApiClient from "@/app/api/axios/ApiClient"
 import { formatDate } from "@/helpers/time"
 import Dropdown from "./ui/Dropdown"
 import NotificationIcon from "./icons/NotificationIcon"
@@ -71,7 +70,7 @@ const Content = () => {
 
 export const NotificationItem = ({notification}:{notification: NotificationItem}) => {
   return (
-    <div className={`flexBetween py-2 group rounded-xl px-2 ${!notification.isRead && 'bg-semiLight dark:bg-d_netral'}`}>
+    <div className={`flexBetween py-2 group rounded-xl hover:bg-semiLight dark:hover:bg-d_netral px-2 ${!notification.isRead && 'bg-semiLight dark:bg-d_netral'}`}>
       <div className='basis-[85%] flex gap-2'>
         <RoundedImage src={notification.notifier.profile_picture} className="min-w-[40px] !w-[40px]" alt='profile_picture' />
         <div className='flex flex-col'>
@@ -82,11 +81,6 @@ export const NotificationItem = ({notification}:{notification: NotificationItem}
         </div>
       </div>
       <div className='flex items-center gap-2'>
-        <div className={`w-8 aspect-square hidden group-hover:flex items-center justify-center rounded-full
-        ${notification.isRead ? "bg-semiLight dark:bg-d_netral":"bg-white dark:bg-d_semiDark"}`}
-        >
-          <HiOutlineDotsHorizontal className='text-xl' />
-        </div>
         {!notification.isRead && (
           <div className='w-2 aspect-square rounded-full bg-blue-500' />
         )}

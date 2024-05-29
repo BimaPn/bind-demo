@@ -12,6 +12,7 @@ const FollowUser = ({username}:{username: string}) => {
     <FollowUserBtn 
     username={user.username}
     isFollow={user.isFollow} 
+    big
     className="!py-2 !w-full ss:!w-fit" 
     />
   )
