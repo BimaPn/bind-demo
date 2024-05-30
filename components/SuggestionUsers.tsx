@@ -12,7 +12,7 @@ const suggestions = ["bimapn","fabian","cristiano","eminem","mike_tyson"]
 const SuggestionUsers = () => {
   const { users } = useUsers()
   return (
-    <div className="bg-light dark:bg-d_semiDark text-dark dark:text-light rounded-xl sm:shadow px-3 pb-1 pt-3">
+    <div className="bg-light dark:bg-d_semiDark text-dark dark:text-light rounded-xl sm:shadow px-3 pt-2">
       <div className="flexBetween">
         <h4 className="font-medium">Suggestion for you</h4>
       </div>

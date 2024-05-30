@@ -3,12 +3,31 @@
 @tailwind utilities;
 
 body {
-  font-family: var(--font-roboto);
   overflow-y: scroll;
   scrollbar-gutter: stable both-edges;
   @apply bg-semiLight dark:bg-dark
 }
 
+/* CUSTOM CURSORBAR */
+*::-webkit-scrollbar-track
+{
+	background-color: transparent;
+}
+
+*::-webkit-scrollbar
+{
+	width: 8px;
+}
+
+*::-webkit-scrollbar-thumb
+{
+  @apply bg-gray-400 dark:bg-[#E1E5EA] rounded-full  
+}
+
+
+.font-azonix {
+  font-family: var(--font-unbounded);
+}
 .boxWidth{
   @apply w-[1366px] max-w-[1366px]
 }

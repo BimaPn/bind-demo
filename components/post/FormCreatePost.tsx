@@ -1,19 +1,19 @@
 'use client'
 import { MdOutlinePhotoLibrary } from 'react-icons/md'
-import { useState,useContext, useEffect } from 'react'
+import { useState,useContext, useEffect, useRef } from 'react'
 import { CreatePostFormProps, PostsContextProps } from '@/types/post'
-import { postContext } from '../providers/PostContext'
 import { GrSchedule } from 'react-icons/gr'
 import EmojiIcon from '../icons/emojiIcon'
-import TextArea from '../ui/TextArea'
 import ImagesInput from '../ImagesInput'
 import PickEmoji from '../PickEmoji'
 import { authUser } from '@/constants/user'
 import { usePosts } from '../providers/PostsProvider'
+import TextAreaExpand from '../ui/TextAreaExpand'
 
 const FormCreatePost = ({groupId, mobile = false, onClose}:{groupId?: string,mobile?:boolean,onClose?:()=>void}) => {
     const [isDisableBtn,setIsDisableBtn] = useState<boolean>(true)
     const { addPost } = usePosts()
+    const submitRef = useRef<HTMLButtonElement>(null)
     const [formData,setFormData] = useState<CreatePostFormProps>({
         caption : '',
         media : [],
@@ -52,10 +52,11 @@ const FormCreatePost = ({groupId, mobile = false, onClose}:{groupId?: string,mob
   return (
     <form className='flex flex-col' onSubmit={formSubmit}>
     <div className={`${mobile ? 'max-h-full' : 'max-h-96'} overflow-y-auto py-2`}>
-        <TextArea
+        <TextAreaExpand
         value={formData.caption}
         rows={1}
         onChange={(e) => setFormData({...formData,caption:e.target.value})}
+        handleSubmit={() => submitRef.current?.click()} 
         placeholder="What's going on ?"
         className='text-lg !border-0 !bg-transparent placeholder:text-semiDark placeholder:dark:text-d_semiLight dark:text-d_light' />
     </div>
@@ -88,6 +89,7 @@ const FormCreatePost = ({groupId, mobile = false, onClose}:{groupId?: string,mob
             disabled={isDisableBtn}
             className='px-8 py-[6px] rounded-full bg-semiLight text-sm text-dark font-medium hover:bg-gray-200 disabled:opacity-40 disabled:cursor-not-allowed'
             type='submit'
+            ref={submitRef}
             >
             <span className=' block'>Post</span>
             </button>
