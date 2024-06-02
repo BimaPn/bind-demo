@@ -5,30 +5,20 @@ import GroupJoinButton from "./GroupJoinButton"
 import { useContext, useState} from "react"
 import { useGroups } from "../providers/GroupsProvider"
 import PageHeader from "../PageHeader"
-import CreatePostModal from "../post/CreatePostModal"
-import { IoIosAddCircleOutline } from "react-icons/io"
 import EditGroup from "./EditGroup"
 import Dropdown from "../ui/Dropdown"
 import { CiEdit } from "react-icons/ci"
 import { AiOutlineDelete } from "react-icons/ai"
 import { GroupProps } from "@/types/group"
 import { useRouter } from "next-nprogress-bar"
+import useConfirm from "../ui/Confirm"
 
 const GroupHeader = ({groupId}:{groupId: string}) => {
   const { findGroup } = useGroups()
   const [group, setGroup] = useState(findGroup(groupId))
-
   return (
     <>
-    <PageHeader title={group.name} showWideScreen={false} className="ss:hidden block">
-      <CreatePostModal
-      groupId={group.id}
-      className='block ss:hidden'>
-        {group.isJoin && (
-          <IoIosAddCircleOutline className='text-3xl text-dark dark:text-light' />
-        )}
-      </CreatePostModal>
-    </PageHeader>
+    <PageHeader title={group.name} showWideScreen={false} className="ss:hidden block" />
 
     <section className="bg-light dark:bg-d_semiDark sm:shadow rounded-none ss:rounded-t-xl">
         <div className="aspect-[2.35/1] relative">
@@ -41,11 +31,11 @@ const GroupHeader = ({groupId}:{groupId: string}) => {
           />
         </div>
 
-    <div className="pb-3 flex flex-col px-4 pt-4 text-dark dark:text-d_light">
-      <h1 className="font-bold text-2xl">{group.name}</h1>
-      <p className="break-all my-2">{group.description}</p>
+    <div className="pb-3 flex flex-col px-3 ss:px-4 pt-4 text-dark dark:text-d_light">
+      <h1 className="font-bold text-xl ss:text-2xl">{group.name}</h1>
+      <p className="break-all text-sm ss:text-base my-2">{group.description}</p>
       <div className="flex ss:items-center flex-col ss:flex-row ss:justify-between gap-2">
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 text-sm ss:text-base">
           <span className="font-medium">{group.memberTotal}</span>
           <span className="text-semiDark dark:text-d_semiLight">Members</span>
         </div>
@@ -53,12 +43,14 @@ const GroupHeader = ({groupId}:{groupId: string}) => {
           <GroupJoinButton 
           groupId={group.id}
           isJoin={group.isJoin}
-          className="!w-full ss:!w-fit"
+          className="!w-full ss:!w-fit ss:px-7"
           />
           {group.isAdmin && (
+            <div className="relative"> 
             <GroupDropdown
             group={group}
             />
+            </div>
           )}
         </div>
       </div>
@@ -71,24 +63,28 @@ const GroupHeader = ({groupId}:{groupId: string}) => {
 const GroupDropdown = ({group}:{group: GroupProps}) => {
   const { markDelete } = useGroups()
   const router = useRouter()
-  const deleteButton = (e: React.MouseEvent) => {
+  const [ConfirmDialog, confirm] = useConfirm({
+    label: "Are you sure you want to delete this group ?"
+  })
+  const deleteButton = async (e: React.MouseEvent) => {
     e.preventDefault()
-    let isDelete = confirm("Are you sure you want to delete this group ?")
+    let isDelete = await confirm()
     if(!isDelete) return;
    
     markDelete(group.id)
     router.push(`/group`)
   }
   return (
+    <> 
     <Dropdown>  
       <Dropdown.Trigger>
-        <div className="flexCenter px-[6px] aspect-square rounded-full border border-gray-300 dark:border-d_semiLight text-dark dark:text-light">
+        <div className="flexCenter px-[6px] aspect-square rounded-full border border-gray-300 dark:border-d_netral text-dark dark:text-light">
           <BsThreeDots className="text-xl" />
         </div>
       </Dropdown.Trigger>
 
       <Dropdown.Content className="right-0 w-40 text-dark dark:text-d_light">
-        <ul className="bg-light dark:bg-d_semiDark flex flex-col shadow rounded-lg py-2 px-2">
+        <ul className="bg-light dark:bg-d_semiDark flex flex-col shadow rounded-lg py-2 px-2 dark:border border-0 dark:border-d_netral">
           <li>
             <EditGroup
             id={group.id}
@@ -111,6 +107,8 @@ const GroupDropdown = ({group}:{group: GroupProps}) => {
         </ul>
       </Dropdown.Content>
     </Dropdown> 
+    <ConfirmDialog />
+    </>
   )
 }
 

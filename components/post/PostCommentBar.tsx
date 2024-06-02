@@ -2,7 +2,6 @@
 import Image from "next/image"
 import { IoSend } from "react-icons/io5"
 import { useContext, useState, useEffect, useRef } from "react"
-import { postContext } from "../providers/PostContext"
 import { PostCommentProps, PostsContextProps } from "@/types/post"
 import { useComments } from "../providers/CommentsProvider"
 import { authUser } from "@/constants/user"

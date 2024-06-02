@@ -84,7 +84,6 @@ const Header = ({userTarget}:{userTarget: UserChat}) => {
   return (
     <div className="flexBetween px-3">
       <div className="basis-[90%] flex items-center gap-2 py-2">
-        <BackButton className="block sm:hidden" />
         <Link href={`/user/${userTarget.username}`}>
           <RoundedImage
           src={userTarget.profile_picture} 
@@ -92,10 +91,12 @@ const Header = ({userTarget}:{userTarget: UserChat}) => {
           className="!min-w-[40px] !w-[40px]"
           />
         </Link>
-        <Link href={`/${userTarget.username}`}>
+        <Link href={`/user/${userTarget.username}`}>
           <span className="w-full line-clamp-1">{userTarget.name}</span>
         </Link>
       </div>
+
+      <BackButton closeIcon className="block sm:hidden" />
     </div>
   )
 }

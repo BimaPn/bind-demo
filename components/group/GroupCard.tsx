@@ -15,13 +15,13 @@ const GroupCard = ({id,group_picture,name,memberTotal,isJoin,className}:GroupCar
     })
   return (
     <div className={`flex flex-col border dark:border-d_netral pb-2 gap-1 hover:cursor-pointer overflow-hidden rounded-xl ${className}`}>
-        <div className="w-full h-fit aspect-video relative">
+        <Link href={`/group/${group.id}`} className="w-full h-fit aspect-video relative">
             <Image 
             src={group_picture}
             fill
             objectFit="cover"   
             alt="group picture"/>
-        </div>
+        </Link>
         <div className="w-fit px-2">
           <Link href={`/group/${group.id}`} >              
               <span className="block w-full truncate mb-[2px]">{name}</span>

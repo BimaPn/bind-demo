@@ -8,7 +8,7 @@ const page = () => {
       <PageHeader title='Saved' showWideScreen={false}>
         <BsThreeDots className='text-xl' />
       </PageHeader>
-      <div className='mt-[56px] ss:m-0'>
+      <div>
         <PostsSaved />
       </div>
     </>

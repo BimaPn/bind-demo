@@ -5,12 +5,12 @@ import FormCreatePost from '../post/FormCreatePost'
 
 const CreatePostGroup = ({groupId}:{groupId:string}) => {
   return (
-    <section className="w-full bg-light dark:bg-d_semiDark rounded-xl sm:shadow">    
-      <div className="flex gap-3 px-4 py-3">
+    <section className="w-full bg-light dark:bg-d_semiDark ss:rounded-xl sm:shadow">    
+      <div className="flex gap-3 px-3 ss:px-4 py-2 ss:py-3">
         <RoundedImage
         src={authUser.profile_picture}
         alt="profile picture"
-        className='!w-12' />
+        className='!w-12 !hidden ss:!block' />
         <div className='w-full flex flex-col'>
           <FormCreatePost groupId={groupId} />
         </div>

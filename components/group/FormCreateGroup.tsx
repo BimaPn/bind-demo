@@ -69,7 +69,7 @@ const FormCreateGroup = () => {
           className='min-h-[36px] pl-2 rounded-xl bg-transparent dark:!border-gray-600' 
           />
         </div>
-        <div className="flex items-center justify-end px-4 h-16 bg-white dark:bg-d_semiDark">
+        <div className="fixed left-0 bottom-0 right-0 ss:static flex items-center justify-end px-4 h-16 bg-white dark:bg-d_semiDark">
             <button 
             disabled={isDisableBtn} 
             className="px-6 py-2 bg-dark dark:bg-white dark:text-black text-light font-medium text-sm rounded-full disabled:opacity-40 disabled:cursor-not-allowed">

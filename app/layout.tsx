@@ -26,7 +26,7 @@ const unbounded = Unbounded({
 
 
 export const metadata: Metadata = {
-  title: "BIND",
+  title: "Bind",
   description: "Cool app made by generous person",
 };
 

@@ -45,7 +45,7 @@ const Post = (
               {caption}
             </p>
         )}
-        <div className="-mx-1">
+        <div className="-mx-2 ss:-mx-1">
           {media?.length != 0 && (
             <PostMedia media={media!} playInView={playInView}/>
           )}
@@ -70,7 +70,7 @@ const Header = ({id,user,caption,media,created_at}:Pick<PostProps,"user" | "crea
                 )}
                 <div className="flex flex-col text-dark gap-[2px]">
                     <div className="leading-4 flex items-center gap-1">
-                        <Link href={`/${user.username}`} onClick={(e) => e.stopPropagation()}>
+                        <Link href={`/user/${user.username}`} onClick={(e) => e.stopPropagation()}>
                             <span className="font-medium text-dark dark:text-d_light hover:underline">
                               {user.name}
                             </span>
@@ -85,7 +85,7 @@ const Header = ({id,user,caption,media,created_at}:Pick<PostProps,"user" | "crea
 
                 </div>
             </div>
-            <div onClick={(e) => e.stopPropagation()}>
+            <div onClick={(e) => e.stopPropagation()} className="relative">
               <PostOptionDropdown 
               postId={id as string}
               isAuthor={user.username === authUser.username} 

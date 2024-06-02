@@ -27,9 +27,9 @@ const page = ({params}:{params:{id: string}}) => {
     });
   }
   return (
-    <section className="fixed inset-0 flex flex-col ss:relative ss:z-[0] z-[20] overflow-auto">
+    <section className="fixed inset-0 flex flex-col ss:relative ss:z-[0] z-[900] overflow-auto bg-white dark:bg-d_semiDark">
       <PageHeader title={`${post.user.username}'s Post`} showWideScreen={false} />
-      <div className="h-full flex flex-col ss:h-fit bg-white dark:bg-d_semiDark rounded-xl relative">
+      <div className="flex flex-col ss:h-fit ss:rounded-xl relative">
           <Post
             id={post.id}
             caption={post.caption} 
@@ -42,13 +42,13 @@ const page = ({params}:{params:{id: string}}) => {
             isLiked={post.isLiked}
             isSaved={post.isSaved}
           /> 
-          <div className='h-full ss:min-h-[160px] flex flex-col gap-3 px-2 ss:px-4 pb-2 ss:pb-0 mt-3'>
+          <div className='h-full ss:min-h-[160px] flex flex-col gap-3 px-2 ss:px-4 mb-14 mt-3'>
             {comments.filter(comment => comment.postId === params.id).map((comment, index) => (
               <PostComment key={index} comment={comment} />
             ))}
           </div>
         
-        <div className="bottom-0 left-0 right-0 bg-white dark:bg-d_semiDark rounded-b-xl border-t ss:border-0">
+        <div className="fixed ss:static bottom-0 left-0 right-0 bg-white dark:bg-d_semiDark rounded-b-xl border-t dark:border-d_netral ss:border-0">
           <PostCommentBar
           postId={post.id as number | string}
           onFinished={addComment}

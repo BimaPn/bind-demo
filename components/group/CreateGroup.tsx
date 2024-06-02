@@ -16,7 +16,7 @@ const CreateGroup = ({children,className}:{children:React.ReactNode,className?:s
       title="Create group"
       show={isOpenModal} 
       onClose={() => setIsOpenModal(false)}
-      className="h-screen sm:!h-fit"
+      className="h-svh sm:!h-fit"
       >
       <Modal.Body className="ss:rounded-b-xl rounded-none">
         <FormCreateGroup />

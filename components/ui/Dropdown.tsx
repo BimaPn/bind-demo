@@ -31,16 +31,16 @@ const Trigger = ({children}:{children : React.ReactNode}) => {
 
 const contentVariants = {
   initial: {
-    scaleY: 0,
+    opacity: 0,
   },
   animate: {
-    scaleY: 1,
+    opacity: 1,
     transition: {
       bounce: 0
     }
   },
   exit: {
-    scaleY: 0,
+    opacity: 0,
     transition: {
       bounce: 0,
       delay: .2

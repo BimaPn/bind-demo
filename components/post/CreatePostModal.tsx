@@ -27,7 +27,7 @@ const CreatePostModal = ({children,groupId,className}:{children:React.ReactNode,
                 alt="profile picture"
                 className='!w-12' />
                 <div className='w-full flex flex-col'>
-                  <FormCreatePost onClose={() => setIsOpenModal(false)} groupId={groupId ? groupId : null} mobile />
+                  <FormCreatePost onClose={() => setIsOpenModal(false)} groupId={groupId ? groupId as string : undefined} mobile />
                 </div>
               </div>
               </Modal.Body>

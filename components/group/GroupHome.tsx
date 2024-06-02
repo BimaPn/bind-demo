@@ -17,11 +17,11 @@ const GroupHome = ({groupId}:{groupId:string}) => {
   },[])
   return (
     <div>
-      <div className="flexCenter flex-col gap-0 sm:gap-3 mt-2 ss:mt-4">
+      <div className="flexCenter flex-col gap-1 sm:gap-3 mt-1 ss:mt-4">
         {!loading && (
         <>
         {findGroup(groupId).isJoin && (
-          <div className='w-full hidden ss:block'>
+          <div className='w-full'>
             <CreatePostGroup groupId={groupId} />
           </div>
         )}

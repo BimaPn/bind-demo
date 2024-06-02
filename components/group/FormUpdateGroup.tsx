@@ -1,10 +1,8 @@
 'use client'
-import ApiClient from '@/app/api/axios/ApiClient'
 import ImageInput from '@/components/ui/ImageInput'
-import InputError from '@/components/ui/InputError'
 import TextArea from '@/components/ui/TextArea'
-import { GroupContextProps, GroupErrorsProps, UpdateGroupProps } from '@/types/group'
-import {useState,useEffect, useContext} from 'react'
+import { UpdateGroupProps } from '@/types/group'
+import {useState,useEffect} from 'react'
 import { useGroups } from '../providers/GroupsProvider'
 
 const FormUpdateGroup = ({groupId,defaultPicture,defaultName,defaultDesc,onClose}:UpdateGroupProps & {onClose : ()=>void}) => {
@@ -35,7 +33,7 @@ const FormUpdateGroup = ({groupId,defaultPicture,defaultName,defaultDesc,onClose
     onClose()
   }
   return (
-    <form onSubmit={formSubmit} className='min-h-full flex flex-col sm:shadow pb-4 sm:rounded-b-xl'>
+    <form onSubmit={formSubmit} className='min-h-full flex flex-col sm:shadow sm:rounded-b-xl'>
     <ImageInput 
     defaultImage={defaultPicture}
     onChange={(file) => setFormData((prev) => ({...prev,group_picture : file}))}
@@ -58,10 +56,10 @@ const FormUpdateGroup = ({groupId,defaultPicture,defaultName,defaultDesc,onClose
             className='min-h-[36px] pl-2 rounded-xl dark:!border-0'
             />
         </div>
-        <div className="flex items-center justify-end px-4">
+        <div className="fixed ss:static left-0 bottom-0 right-0 flex items-center justify-end px-4 py-3">
             <button 
             disabled={isDisableBtn} 
-            className="px-5 text-sm py-2 bg-semiLight dark:bg-light text-dark font-medium rounded-full disabled:opacity-40 disabled:cursor-not-allowed">
+            className="px-6 text-sm py-[6px] bg-semiLight dark:bg-light text-dark font-medium rounded-full disabled:opacity-40 disabled:cursor-not-allowed">
                 Save
             </button>
         </div>

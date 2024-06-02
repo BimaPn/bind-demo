@@ -70,7 +70,7 @@ const FormCreatePost = ({groupId, mobile = false, onClose}:{groupId?: string,mob
         <div className='flexBetween pt-[3px]'>
             <div className='flex items-center gap-2'>
                 <ImagesInput.Trigger>
-                    <div className='flexCenter w-8 aspect-square rounded-full bg-semiLight dark:bg-d_netral'>
+                    <div className='flexCenter w-[30px] ss:w-8 aspect-square rounded-full bg-semiLight dark:bg-d_netral'>
                         < MdOutlinePhotoLibrary className='text-dark dark:text-light' style={{ fontSize : 20 }} />
                     </div>
                 </ImagesInput.Trigger>
@@ -79,7 +79,7 @@ const FormCreatePost = ({groupId, mobile = false, onClose}:{groupId?: string,mob
                 onEmojiClick={(emoji) => setFormData({...formData, caption: formData.caption + emoji})}
                 emojiContainerClassName="top-8 left-0"
                 >
-                  <div className='flexCenter w-8 aspect-square rounded-full bg-semiLight dark:bg-d_netral'>
+                  <div className='flexCenter w-[30px] ss:w-8 aspect-square rounded-full bg-semiLight dark:bg-d_netral'>
                       <EmojiIcon />
                   </div>
                 </PickEmoji>
@@ -87,7 +87,7 @@ const FormCreatePost = ({groupId, mobile = false, onClose}:{groupId?: string,mob
             </div>
             <button
             disabled={isDisableBtn}
-            className='px-8 py-[6px] rounded-full bg-semiLight text-sm text-dark font-medium hover:bg-gray-200 disabled:opacity-40 disabled:cursor-not-allowed'
+            className='px-5 ss:px-8 py-1 ss:py-[6px] rounded-full bg-semiLight text-sm text-dark font-medium hover:bg-gray-200 disabled:opacity-40 disabled:cursor-not-allowed'
             type='submit'
             ref={submitRef}
             >

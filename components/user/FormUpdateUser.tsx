@@ -29,7 +29,7 @@ const FormUpdateUser = ({username,defaultName,defaultBio,defaultProfilePic,defau
         onClose()
     }
   return (
-    <form onSubmit={formSubmit} className='min-h-full flex flex-col sm:shadow sm:rounded-b-xl'>
+    <form onSubmit={formSubmit} className='flex flex-col sm:shadow sm:rounded-b-xl'>
         <div className="relative">
             < ImageInput 
             onChange={(file) => setFormData({...formData,cover_photo : file})}
@@ -56,11 +56,11 @@ const FormUpdateUser = ({username,defaultName,defaultBio,defaultProfilePic,defau
             placeholder="Bio"
             className='min-h-[36px] pl-2 rounded-xl dark:!border-0' />
         </div>
-        <div className="sticky bottom-0 left-0 right-0 bg-white dark:bg-d_semiDark flex items-center justify-end px-4 pt-2 pb-3">
+        <div className="fixed left-0 bottom-0 right-0 ss:static bg-white dark:bg-d_semiDark flex items-center justify-end px-4 pt-2 pb-3">
             <button 
             disabled={isDisableBtn} 
             type='submit'
-            className="px-6 py-[6px] text-sm bg-dark text-white hover:bg-gray-300 font-medium rounded-full disabled:opacity-40 disabled:cursor-not-allowed">
+            className="px-6 py-[6px] text-sm bg-dark dark:bg-white dark:text-dark text-white hover:bg-gray-300 font-medium rounded-full disabled:opacity-40 disabled:cursor-not-allowed">
                 Save
             </button>
         </div>

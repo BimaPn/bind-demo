@@ -5,7 +5,7 @@ import MainLayout from "@/layouts/MainLayout"
 const page = () => {
   return (
     <MainLayout navbarMobile={false}>
-      <div className='hidden ss:block'>
+      <div className='mt-1 ss:mt-0'>
         <CreatePost />
       </div>
       <MainContent />

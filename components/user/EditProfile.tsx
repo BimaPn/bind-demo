@@ -19,10 +19,9 @@ const EditProfile = ({username,profile_picture,cover_photo,name,bio,className}:
         title="Edit Profile"
         show={isOpenModal} 
         onClose={() => setIsOpenModal(false)}
-        className="h-screen sm:!h-fit">
+        className="h-svh sm:!h-fit">
           <Modal.Body className="ss:rounded-b-xl rounded-none">
-          <Modal.Body className="ss:rounded-b-xl rounded-none">
-            < FormUpdateUser 
+            <FormUpdateUser 
             username={username}
             defaultName={name}
             defaultBio={bio}
@@ -30,7 +29,6 @@ const EditProfile = ({username,profile_picture,cover_photo,name,bio,className}:
             defaultCover={cover_photo}
             onClose={() => setIsOpenModal(false)} />
           </Modal.Body>
-        </Modal.Body>
         </Modal>
     </>
   )

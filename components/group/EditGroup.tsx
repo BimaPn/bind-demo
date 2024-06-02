@@ -22,6 +22,7 @@ const EditGroup = ({id,group_picture,name,description, children}:Pick<GroupProps
       <Modal 
       title="Edit Group" 
       show={isOpenModal} 
+      className='h-svh ss:!h-fit'
       onClose={() => setIsOpenModal(false)} >
         <FormUpdateGroup 
         groupId={id} 

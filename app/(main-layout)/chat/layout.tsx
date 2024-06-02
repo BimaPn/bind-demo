@@ -17,7 +17,7 @@ const RootLayout = async ({
       <ChatListProvider>
         <MessagesProvider>
           <section className="w-full flexCenter">
-            <div className='min-h-[93vh] ss:min-h-[81vh] sm:min-h-fit sm:h-[80vh] md:h-[80vh] w-full sm:w-[80%] md:w-full flex gap-6'>
+            <div className='h-svh ss:h-[82svh] sm:h-[75svh] w-full sm:w-[80%] md:w-full flex gap-6 -mb-4'>
               <ChatMenu />
               {children}
             </div>

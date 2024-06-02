@@ -7,11 +7,11 @@ const CreatePost = () => {
   const { user } = useAuth()
   return (
     <section className="bg-light dark:bg-d_semiDark rounded-lg sm:shadow">    
-        <div className="flex gap-3 px-4 py-3">
+        <div className="flex gap-3 px-3 ss:px-4 py-2 ss:py-3">
             <RoundedImage
             src={user.profile_picture}
             alt="profile picture"
-            className='!w-11' />
+            className='!w-11 !hidden ss:!block' />
             <div className='w-full flex flex-col'>
               <FormCreatePost />
             </div>

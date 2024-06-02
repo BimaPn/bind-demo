@@ -19,15 +19,14 @@ const GroupsDiscover = ({className}:{className ?: string}) => {
       </div>
         <div className="grid grid-cols-1 ss:grid-cols-2 gap-3">
           {!loaded && <GroupCardSkeleton count={4} />}
-          {loaded && groupsDiscover().map((group) => (
-            <Link href={`/group/${group.id}`} key={group.id}>              
-              <GroupCard
-              id={group.id}
-              name={group.name}
-              group_picture={group.group_picture}
-              memberTotal={group.memberTotal}
-              isJoin={group.isJoin} />
-            </Link>
+          {loaded && groupsDiscover().map((group, i) => (
+          <GroupCard
+          key={i}
+          id={group.id}
+          name={group.name}
+          group_picture={group.group_picture}
+          memberTotal={group.memberTotal}
+          isJoin={group.isJoin} />
           ))}
         </div>
     </div>

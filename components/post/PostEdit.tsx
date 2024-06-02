@@ -34,14 +34,14 @@ const PostEdit = ({
     onClose={() => setIsOpen(false)} 
     show={isOpen}
     title='Edit post'
-    className='h-full sm:h-fit'
+    className='h-svh sm:h-fit z-[900]'
     >
         <Modal.Body>
-          <div className="flex gap-3 px-4 pt-3 pb-3">
+          <div className="flex gap-3 px-3 ss:px-4 py-2 ss:py-3">
             <RoundedImage
             src={authUser.profile_picture}
             alt="profile picture"
-            className='!w-12' />
+            className='!w-12 !hidden ss:!block' />
             <div className='w-full flex flex-col'>
               <FormUpdatePost
               postId={id}

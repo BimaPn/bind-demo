@@ -13,8 +13,8 @@ const PostsContent = ({posts} : {posts:PostProps[]}) => {
   return (
     <>
       {posts.length <= 0 && (
-        <div className="flexCenter flex-col gap-2 text-netral dark:text-d_semiLight py-6">
-          <BsEmojiNeutralFill className="text-[56px]" />
+        <div className="flexCenter flex-col gap-2 text-netral dark:text-d_semiLight py-10">
+          <BsEmojiNeutralFill className="text-[50px] ss:text-[56px]" />
           <span className="font-medium">There is no post yet.</span>
         </div>
       )}

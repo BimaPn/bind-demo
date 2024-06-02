@@ -2,7 +2,7 @@
 import Modal from '@/components/ui/Modal'
 import {useState} from 'react'
 import RoundedImage from '../ui/RoundedImage'
-import FormCreatePost from './FormCreatePost'
+import FormCreatePost from '../post/FormCreatePost'
 
 const CreateGroupModal = ({children,profilePicture,groupId,className}:{children:React.ReactNode,profilePicture:string,groupId?: string | number,className?:string}) => {
   const [isOpenModal,setIsOpenModal] = useState<boolean>(false)
@@ -26,7 +26,7 @@ const CreateGroupModal = ({children,profilePicture,groupId,className}:{children:
                 alt="profile picture"
                 className='!w-12' />
                 <div className='w-full flex flex-col'>
-                  < FormCreatePost onClose={() => setIsOpenModal(false)} groupId={groupId ? groupId : null} mobile />
+                <FormCreatePost onClose={() => setIsOpenModal(false)} groupId={groupId as string} mobile />
                 </div>
               </div>
               </Modal.Body>

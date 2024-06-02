@@ -6,7 +6,7 @@ const PostMedia = ({media, playInView=false}:{media : string[], playInView?: boo
   return (
     <>
     {media.length == 1 && (
-    <div className="rounded-xl overflow-hidden">
+    <div className="ss:rounded-xl overflow-hidden">
        <ShowMedia 
        playInView={playInView}
        src={media[0]}
@@ -16,7 +16,7 @@ const PostMedia = ({media, playInView=false}:{media : string[], playInView?: boo
     {media.length == 3 && (
         <div className="aspect-square grid grid-rows-2 grid-cols-2 gap-2" >
             {media.map((item,index) => (
-                <div key={index} className={`relative h-full rounded-xl overflow-hidden ${index == 0 && 'row-span-2'}`}>
+                <div key={index} className={`relative h-full ss:rounded-xl overflow-hidden ${index == 0 && 'row-span-2'}`}>
                     <Image 
                     src={item} 
                     alt={"image"}
@@ -31,7 +31,7 @@ const PostMedia = ({media, playInView=false}:{media : string[], playInView?: boo
     {media.length == 2 && (
         <div className="aspect-square grid grid-rows-1 grid-cols-2 gap-2" >
             {media.map((item,index) => (
-                <div key={index} className={`relative h-full rounded-xl overflow-hidden`}>
+                <div key={index} className={`relative h-full ss:rounded-xl overflow-hidden`}>
                     <Image 
                     src={item} 
                     alt={"image"}
@@ -46,7 +46,7 @@ const PostMedia = ({media, playInView=false}:{media : string[], playInView?: boo
     {media.length == 4 && (
         <div className="aspect-square grid grid-rows-2 grid-cols-2 gap-2" >
             {media.map((item,index) => (
-                <div key={index} className={`relative h-full rounded-xl overflow-hidden`}>
+                <div key={index} className={`relative h-full ss:rounded-xl overflow-hidden`}>
                     <Image 
                     src={item} 
                     alt={"image"}

@@ -15,7 +15,7 @@ const NotificationDropdown = () => {
     <>
       <Dropdown>
         <Dropdown.Trigger>
-            <div className='w-9 aspect-square flexCenter bg-semiLight dark:bg-d_netral rounded-full'>
+            <div className='w-[31px] ss:w-9 aspect-square flexCenter bg-semiLight dark:bg-d_netral rounded-full'>
               <div className="relative">
                 {unreadCount > 0 && (
                   <div className={`${unreadCount <= 10 ? "w-[14px] font-semibold text-[9px]":"w-4 text-[9px]"} absolute -top-[10px] -right-[10px] 
@@ -27,11 +27,11 @@ const NotificationDropdown = () => {
                   </span>
                   </div>
                 )}
-                <NotificationIcon active width={18} className='cursor-pointer'/>
+                <NotificationIcon active width={18} className='!w-[16px] ss:!w-[18px] cursor-pointer'/>
               </div>
             </div>
         </Dropdown.Trigger>
-        <Dropdown.Content className="!fixed md:!absolute right-3 md:right-0 !top-12 md:!top-10 w-[384px] aspect-[3/4.5]">
+        <Dropdown.Content className="!fixed md:!absolute right-0 md:right-0 !top-10 md:!top-10 w-dvw sm:w-[384px] sm:aspect-[3/4.5] border sm:border-0 dark:border-d_netral">
           <Content />
         </Dropdown.Content>
       </Dropdown>
@@ -51,8 +51,8 @@ const Content = () => {
     router.push(notification.link)
   }
   return (
-    <div className="w-full h-full flex flex-col bg-white dark:bg-d_semiDark rounded-xl shadow py-2 pt-3">
-      <div className="mb-1 px-4">
+    <div className="w-full h-full flex flex-col bg-white dark:bg-d_semiDark rounded-none sm:rounded-xl shadow py-2 pt-3">
+      <div className="mb-3 px-4">
         <span className="text-lg font-semibold">Notification</span>
       </div>
       <div className="flex flex-col gap-1 grow overflow-auto px-2">
@@ -77,7 +77,7 @@ export const NotificationItem = ({notification}:{notification: NotificationItem}
           <div className="text-[15px]">
             <span className='font-semibold'>{notification.notifier.name}</span> {notification.message} 
           </div>
-          <span className='text-gray-600 text-[13px]'>{notification.created_at}</span>
+          <span className='text-gray-600 dark:text-d_semiLight text-[13px]'>{notification.created_at}</span>
         </div>
       </div>
       <div className='flex items-center gap-2'>

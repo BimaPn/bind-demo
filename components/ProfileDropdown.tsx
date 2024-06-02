@@ -30,10 +30,10 @@ const ProfileDropdown = ({className} : {className ?: string}) => {
           </div>
           <MdArrowForwardIos className="text-sm rotate-90 hidden sm:block" />
         </div>
-        <CgMenuRight className='text-[26px] text-dark dark:text-light block sm:hidden -mb-1' />
+        <CgMenuRight className='text-[25px] text-dark dark:text-light block sm:hidden -mb-1' />
       </Dropdown.Trigger>
 
-      <Dropdown.Content closeWhenClick={false} className="right-0 w-56 ss:w-72 h-[113px] ss:h-[170px] bg-light dark:bg-d_semiDark shadow rounded-lg py-1 ss:py-2 px-1 ss:px-3 overflow-hidden">
+      <Dropdown.Content closeWhenClick={false} className="right-0 w-56 ss:w-72 h-[113px] ss:h-[170px] bg-light dark:bg-d_semiDark shadow rounded-lg py-1 ss:py-2 px-1 ss:px-3 overflow-hidden dark:border border-0 dark:border-d_netral">
         <DropdownContent user={user} />
       </Dropdown.Content>
     </Dropdown>

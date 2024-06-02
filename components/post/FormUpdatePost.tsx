@@ -40,7 +40,7 @@ const FormUpdatePost = ({postId, caption, media, onClose}:
     }
   return (
     <form className='flex flex-col' onSubmit={formSubmit}>
-    <div className='max-h-96 overflow-y-auto py-2'>
+    <div className='max-h-72 ss:max-h-80 overflow-y-auto py-2'>
         <TextAreaExpand
         value={formData.caption}
         rows={1}
@@ -53,7 +53,7 @@ const FormUpdatePost = ({postId, caption, media, onClose}:
     value={formData.media as string []}
     onChange={(files:any) => setFormData({...formData,media:files})}
     >
-        <div className='pb-10 ss:pb-12'>
+        <div className='pb-4 ss:pb-6'>
         <ImagesInput.Preview/>
         </div>
         <div className='flexBetween pt-[3px]'>
@@ -76,7 +76,7 @@ const FormUpdatePost = ({postId, caption, media, onClose}:
             </div>
             <button
             disabled={isDisableBtn}
-            className='px-8 py-[6px] rounded-full bg-semiLight text-sm text-dark font-medium hover:bg-gray-200 disabled:opacity-40 disabled:cursor-not-allowed'
+            className='px-6 ss:px-8 py-[5px] ss:py-[6px] rounded-full bg-semiLight text-sm text-dark font-medium hover:bg-gray-200 disabled:opacity-40 disabled:cursor-not-allowed'
             ref={submitRef}
             type='submit'
             >

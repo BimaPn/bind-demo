@@ -11,7 +11,7 @@ type PageHeaderProps = {
 const PageHeader = ({title,showWideScreen=true,children,className}:PageHeaderProps) => {
   return (
     <>
-    <div className={`ss:hidden block sticky top-0 left-0 right-0 bg-light border dark:bg-d_semiDark text-dark dark:text-d_light py-3 px-4 flexBetween rounded-none sm:rounded-t-xl z-[995] ${className}`}>
+    <div className={`ss:hidden block sticky top-0 left-0 right-0 bg-light border-b dark:border-d_netral dark:bg-d_semiDark text-dark dark:text-d_light py-3 px-4 flexBetween rounded-none sm:rounded-t-xl z-[550] ${className}`}>
         <div className="flex items-center gap-3">
             <BackButton />
             <span className="font-medium">
